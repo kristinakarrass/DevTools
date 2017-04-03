@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     var apiResponse = [];
 
-    $("#submit").click(function() {
+    $("#submitNews").click(function() {
         $("#results").empty();
             var userQuery = $("#search").val().trim();
      
