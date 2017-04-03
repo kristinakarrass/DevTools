@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>User Location Markers</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+    }   
+     #locationForm {
+        position: relative;
+ 		top: 400px;
+ 		left: 400px;
+    }
+    </style>
+</head>
+
+<body>
+
+    <div id='map' style="width: 600px; height: 500px;"></div>
+    <form id="locationForm">
+        <input type="text" id="userLocation">
+        <br>
+        <button id="add-location" type="submit" class="btn btn-info">Add your location</button>
+    </form>
+    <script>
+    //create map 
+    L.mapbox.accessToken = 'pk.eyJ1Ijoia3Jpa2FyciIsImEiOiJjajEwcmxpdmEwM2ZoMzJwZWNrc3hnYm13In0.8cXei-iPLO0qctadLZ9O9w';
+    var map = L.mapbox.map('map', 'mapbox.streets')
+        .setView([15, -25], 2);
+
+    //get user's location and add it to the map
+    $("#add-location").on("click", function() {
+        //prevents the page to reload when enter is pressed
+        event.preventDefault();
+        //create user location (grab it from user input) and query variables
+        var userLocation = $("#userLocation").val().trim();
+        var queryURL = 'http://maps.googleapis.com/maps/api/geocode/json?address=' + userLocation + '&sensor=false;'
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).done(function(response) {
+        	//log response
+            console.log(response);
+            console.log(response.results[0].geometry.location.lat);
+            console.log(response.results[0].geometry.location.lng);
+            //create variables for latitude and longitude of user input
+            var userLat = response.results[0].geometry.location.lat;
+            var userLng = response.results[0].geometry.location.lng;
+            //create marker variable and icon to be used
+            var marker = L.marker([userLat, userLng], {
+                icon: L.mapbox.marker.icon({
+                    'marker-size': 'medium',
+                    'marker-color': '#4aaaa5'
+                })
+                //add marker to map
+            }).addTo(map);
+        })
+
+    });
+
+
+
+    // Create Chapel Hill, NC marker and set its icons to L.mapbox.marker.icon
+    L.marker([35.9131996, -79.0558445], {
+        icon: L.mapbox.marker.icon({
+            'marker-size': 'medium',
+            'marker-color': '#4aaaa5'
+        })
+    }).addTo(map);
+
+    </script>
+</body>
+
+</html>

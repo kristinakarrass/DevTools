@@ -19,12 +19,12 @@ $("#submit").on("click", function() {
                 var gitTitle = $("<p>").html("Title: " + response.items[i].name);
                 var gitUser = $("<p>").html("Git User: " + response.items[i].full_name);
                 var gitDescription = $("<p>").html("Description: " + response.items[i].description);
-                var gitURL = $("<button><a href='" + response.items[i].html_url + "'target='none'>View</a></button>");
+                var gitURL = $("<button class='button'><a href='" + response.items[i].html_url + "'target='none'>View</a></button>");
                 resultsDiv.append(gitTitle);
                 resultsDiv.append(gitUser);
                 resultsDiv.append(gitDescription);
                 resultsDiv.append(gitURL);
-                resultsDiv.append("<button>Save</button>");
+                resultsDiv.append("<button class='button'>Save</button>");
 
                 $(".results").append(resultsDiv);
             }
