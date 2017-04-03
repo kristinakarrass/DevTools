@@ -5,6 +5,8 @@
 <head>
 
 	<meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<title>Dev Tools</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,9 +19,15 @@
 
 	<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 
+
 </head>
 
 <body>
+ 	<label for="search">Search Term</label>
+	<input type="text" class="form-control" id="searchTerm" />
+    <button type="submit" id="submit" class="btn btn-default">Submit</button>                  
+<div class="results"></div>
+
 
 	<br/>
 
@@ -72,7 +80,9 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<script type="text/javascript" src="assets/javascript/auth.js"></script>
   <script type="text/javascript" src="assets/javascript/news.js"></script>
-	
+	<script type="text/javascript" src="network.js"></script>
+
+
 </body>
 </html>
 
