@@ -88,11 +88,12 @@
             });
  
         })
-
+        $("#userLocation").val("");
     });
 
     database.ref().on("child_added", function(childSnapshot) {
         console.log(childSnapshot.val().location);
+        var location = childSnapshot.val().location;
         var userLng = childSnapshot.val().longitude;
         var userLat = childSnapshot.val().latitude;
         var marker = L.marker([userLat, userLng], {
@@ -100,7 +101,9 @@
                 'marker-size' : 'medium',
                 'marker-color' : '#4aaaa5'
             })
-        }).addTo(map);
+        })
+            .bindPopup(location)
+            .addTo(map);
     })
 
     // Create Chapel Hill, NC marker and set its icons to L.mapbox.marker.icon
@@ -109,7 +112,9 @@
             'marker-size': 'medium',
             'marker-color': '#4aaaa5'
         })
-    }).addTo(map);
+    })
+        .bindPopup("Chapel Hill, NC, USA")
+        .addTo(map);
 
     </script>
 </body>
