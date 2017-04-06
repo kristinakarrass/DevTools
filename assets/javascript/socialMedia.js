@@ -45,7 +45,7 @@ $(document).ready(function() {
                     newDiv.append("<button><a href='"+ vidIdFullLink+"'" + "target='_blank'>View</a></button>");
                     //note to frontend person! please style the text on this button so it doesnt have standard link formatting and looks like standard button text.
                     //the other ways of making link buttons that I've looked up don't work with dynamic button creation like I have here
-                    //also, I just looked at the network.js file, and the view button there seems to have been created the same way
+                    //also, I just looked at the news.js file, and the view button there seems to have been created the same way
                     //so it looks like our best bet is to make the button text the link on our view buttons, and then use css to make the button text look like every other button 
                     
 
