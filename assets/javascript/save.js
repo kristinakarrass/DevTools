@@ -1,5 +1,5 @@
 
-//click on viewAllSaved, sort unread first, then read
+//STILL FOR ME TODO: click on viewAllSaved, sort unread first, then read
 
 
 //initializes firebase
@@ -116,9 +116,9 @@ $(document).ready(function() {
 
         //gets id of the clicked article (which is set to the unique article identifier from Firebase)
         var articleChosen = $(this).attr("id");
-        var articleToDelete = document.getElementById(articleChosen);
         
-        //deletes article
+        //gets element of article to delete and deletes article
+        var articleToDelete = document.getElementById(articleChosen);
         articleToDelete.parentNode.parentNode.removeChild(articleToDelete.parentNode);
      
         //snapshot captures snapshot of all the articles within the uid
