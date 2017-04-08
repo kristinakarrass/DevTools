@@ -1,7 +1,3 @@
-
-   
-
-
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCslYrCxbDfzGaaUL9ooO5oq2bHasApGoY",
@@ -32,7 +28,7 @@
             url: queryURL,
             method: "GET"
         }).done(function(response) {
-        	//log response
+
             console.log(response);
             console.log(response.results[0].formatted_address);
             console.log(response.results[0].geometry.location.lat);
@@ -50,10 +46,20 @@
  
         })
 
+
     });
 
     database.ref().on("child_added", function(childSnapshot) {
         console.log(childSnapshot.val().location);
+
+        $("#userLocation").val("");
+    });
+
+    //retrieve user location from database and display it on map
+    database.ref().on("child_added", function(childSnapshot) {
+        //creating variables from childsnapshot for marker on map
+        var location = childSnapshot.val().location;
+
         var userLng = childSnapshot.val().longitude;
         var userLat = childSnapshot.val().latitude;
         var marker = L.marker([userLat, userLng], {
@@ -61,15 +67,25 @@
                 'marker-size' : 'medium',
                 'marker-color' : '#4aaaa5'
             })
-        }).addTo(map);
+
+        
+    
+    // Create Chapel Hill, NC marker and set its icons to L.mapbox.marker.icon
+
+        })  //popup showing user location and add it to map
+            .bindPopup(location)
+            .addTo(map);
     })
 
-    // Create Chapel Hill, NC marker and set its icons to L.mapbox.marker.icon
+    // Create Bootcamp Chapel Hill, NC marker and set its icons to L.mapbox.marker.icon
+
     L.marker([35.9131996, -79.0558445], {
         icon: L.mapbox.marker.icon({
             'marker-size': 'medium',
             'marker-color': '#4aaaa5'
         })
-    }).addTo(map);
 
-   
+    })
+        .bindPopup("UNC Chapel Hill Bootcamp, NC, USA")
+        .addTo(map);
+

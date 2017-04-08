@@ -1,32 +1,22 @@
 
-//does not work with document.ready
-
-// $(document).ready(function(){
-    //initializes Firebase
-    var config = {
-       apiKey: "AIzaSyB0X6st9I1JgHTGsZ2bf6cEomOEp7I_COM",
-       authDomain: "webtools-f8edf.firebaseapp.com",
-        databaseURL: "https://webtools-f8edf.firebaseio.com",
-        projectId: "webtools-f8edf",
-        storageBucket: "webtools-f8edf.appspot.com",
-        messagingSenderId: "541829677685"
-    };
-
-    firebase.initializeApp(config);
+$(document).ready(function(){
 
     var provider = new firebase.auth.GoogleAuthProvider();
+    window.uid;
 
-    // buttoncallback
     function toggleSignIn() {
         if (!firebase.auth().currentUser) {
             //creates provider
             var provider = new firebase.auth.GoogleAuthProvider();
+
             provider.addScope('https://www.googleapis.com/auth/plus.login');
+            
             firebase.auth().signInWithPopup(provider).then(function(result) {
                 // gives a Google Access Token 
                 var token = result.credential.accessToken;
                 // signed-in user info.
                 var user = result.user;
+                
             }).catch(function(error) {
                   // handles errors
                   var errorCode = error.code;
@@ -53,19 +43,19 @@
     function initApp() {
         // Listens for auth state changes
         firebase.auth().onAuthStateChanged(function(user) {
+            //user is signed in
             if (user) {
-                //user is signed in
                 var displayName = user.displayName;
                 var email = user.email;
                 var emailVerified = user.emailVerified;
                 var photoURL = user.photoURL;
                 var isAnonymous = user.isAnonymous;
-                var uid = user.uid;
+                uid = user.uid;
                 var providerData = user.providerData;
                 document.getElementById('GoogleSignInStatus').textContent = 'Signed in';
                 document.getElementById('GoogleSignIn').textContent = 'Sign out';
+                 // user is signed out
             }   else {
-                    // user is signed out
                     document.getElementById('GoogleSignInStatus').textContent = 'Signed out';
                     document.getElementById('GoogleSignIn').textContent = 'Sign in with Google';
                 }
@@ -74,9 +64,6 @@
         document.getElementById('GoogleSignIn').addEventListener('click', toggleSignIn, false);
     }
 
+    initApp();
 
-    window.onload = function() {
-        initApp();
-    };
-
-// });//end document.ready
+});//end document.ready
