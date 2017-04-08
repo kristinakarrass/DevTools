@@ -1,8 +1,7 @@
+//stuck title as id of button
 
-//STILL FOR ME TODO: click on viewAllSaved, sort unread first, then read
 
-
-//initializes firebase
+//initializes Firebase
 var config = {
    	apiKey: "AIzaSyB0X6st9I1JgHTGsZ2bf6cEomOEp7I_COM",
    	authDomain: "webtools-f8edf.firebaseapp.com",
@@ -14,55 +13,68 @@ var config = {
 
 firebase.initializeApp(config);
 
-//variable to reference the database
-var database = firebase.database();
+//references the database
+var database =  firebase.database();
 
 $(document).ready(function() {
-	
+    
     //stores user and article info in database
 	function storeArticle() {
-
-    	var parentToStore = this.parentNode;
-    	var titleToStore = parentToStore.childNodes[2].innerHTML;
-    	var descToStore = parentToStore.childNodes[3].innerHTML;
-    	var urlToStore = parentToStore.childNodes[6].innerHTML;
-
-    	firebase.database().ref(uid + '/').push({
-           
-        	title: titleToStore,
-        	description: descToStore,
-        	URL: urlToStore,
-        	readStatus: "not read"
-
-    	});
-       
+        //gets id of the clicked article (which is set to the unique article identifier from Firebase)
+        var articleTitle = $(this).attr("id");
+        //identifies whether an article. has been saved already
+        var duplicate = false;
+        //captures article clicked
+        var article = this;
+        //captures snapshot of all the articles within the uid
+        database.ref(uid + "/").once('value').then(function(snapshot) {
+            //loops through database and captures snapshot of individual articles
+            snapshot.forEach(function(childSnapshot) {
+                //if title in article's id and in Firebase match, displays message
+                if (articleTitle == childSnapshot.val().title) {
+                    duplicate = true;
+                    $("#saveMessage").html("You already saved this item.");
+                    $(saveMessageDiv).show();
+                } 
+            });
+            //saves article in Firebase if not a duplicate  
+            if (!duplicate){
+                var parentToStore = article.parentNode;
+                var titleToStore = parentToStore.childNodes[2].innerHTML;
+                var descToStore = parentToStore.childNodes[3].innerHTML;
+                var urlToStore = parentToStore.childNodes[6].innerHTML;
+                $("#saveMessage").empty();
+                database.ref(uid + '/').push({
+                    title: titleToStore,
+                    description: descToStore,
+                    URL: urlToStore,
+                    readStatus: 0
+                });
+            }
+    	});//ends return
+        
 	}//ends storeArticle function
 
     function readStatus() {
 
-        //gets id of the clicked article (which is set to the unique article identifier from Firebase)
         var articleChosen = $(this).attr("id");
 
-        //snapshot captures snapshot of all the articles within the uid
-        return firebase.database().ref(uid + "/").once('value').then(function(snapshot) {
+        database.ref(uid + "/").once('value').then(function(snapshot) {
 
-            //loops through each key in firebase
-            //childSnapshot captures snapshot of the individual article
             snapshot.forEach(function(childSnapshot) {
 
-                //captures unique article identifier from Firebase
                 var articleKey = childSnapshot.key;
                 
                 //if key in article's id and article identifier in Firebase match, changes readStatus
                 if (articleKey == articleChosen) {
 
-                    if(childSnapshot.val().readStatus == "not read") {
-                        firebase.database().ref(uid + '/' + articleKey).update({
-                            readStatus: "read"
+                    if(childSnapshot.val().readStatus == 0) {
+                        database.ref(uid + '/' + articleKey).update({
+                            readStatus: 1
                         });
                     }   else {
-                            firebase.database().ref(uid + '/' + articleKey).update({
-                                    readStatus: "not read"
+                            database.ref(uid + '/' + articleKey).update({
+                                    readStatus: 0
                             });
                         }
                 } //ends if articleKey
@@ -73,38 +85,10 @@ $(document).ready(function() {
 
     }//ends readStatus function
 
-    //global var needed for savedDiv function
-    var returnTitle;
-    var returnDesc;
-    var returnLink;
-    var readCheckbox;
-
-    //retrieves values from Firebase and displays them
-    function savedDiv(key) {
-
-        var returnDiv = $("<div class='resultDiv'><br/><hr/>");
-
-        var returnTitleH4 = $("<h4>" + returnTitle + "</h4>");
-        $(returnDiv).append(returnTitleH4);
-
-        var returnDescP = $("<p>" + returnDesc + "</p><br/>");
-        $(returnDiv).append(returnDescP);
-
-        var returnLinkBtn = $("<button>" + returnLink + "</button><br/>");
-        $(returnDiv).append(returnLinkBtn);
-        
-        var deleteBtn = $("<button class='delete' id=" + key +  ">X</button>");
-        $(returnDiv).append(deleteBtn);
-
-        $(returnDiv).append(readCheckbox);
-
-        $("#saveResults").append(returnDiv);
-
-    } //ends retrieveSaved function
-
     //global variable needed for saveMessageDiv function
     var saveMessageP;
 
+    //creates div for messages
     function saveMessageDiv() {
         var saveMessageDiv = $("<div id='saveMessage'>");
         $(saveMessageDiv).append(saveMessageP);
@@ -114,18 +98,14 @@ $(document).ready(function() {
 
     function deleteArticle() {
 
-        //gets id of the clicked article (which is set to the unique article identifier from Firebase)
         var articleChosen = $(this).attr("id");
         
         //gets element of article to delete and deletes article
         var articleToDelete = document.getElementById(articleChosen);
         articleToDelete.parentNode.parentNode.removeChild(articleToDelete.parentNode);
      
-        //snapshot captures snapshot of all the articles within the uid
-        return firebase.database().ref(uid + "/").once('value').then(function(snapshot) {
+        database.ref(uid + "/").once('value').then(function(snapshot) {
 
-            //loops through each key in firebase
-            //childSnapshot captures snapshot of the individual article
             snapshot.forEach(function(childSnapshot) {
 
                 //captures unique article identifier from Firebase
@@ -133,7 +113,7 @@ $(document).ready(function() {
                 
                 //if key in article's id and article identifier in Firebase match, delete article
                 if (articleKey == articleChosen) {
-                    firebase.database().ref(uid + '/' + articleKey).remove();
+                    database.ref(uid + '/' + articleKey).remove();
                 } //ends if articleKey
 
             });//ends snapshot
@@ -141,38 +121,89 @@ $(document).ready(function() {
         });//ends return
     }
 
+    //gets article information from Firebase and displays it
+    function processJSON(json, readStatus) {
+
+        if (json){
+
+                var count = 0;
+                var returnDiv;
+                var returnTitleH4;
+                var returnDescP;
+                var returnLinkBtn;
+                var deleteBtn;
+
+                //loops thru keys & calls retrieveSaved() to retrieve values from Firebase and display them
+                for (var key in json) {
+
+                    //if Firebase readStatus = parameter readStatus or if parameter readStatus = -1
+                    if(json[key]["readStatus"] == readStatus || readStatus == -1) {
+                        returnTitle = json[key]["title"];
+                        returnDesc =  json[key]["description"];
+                        returnLink =  json[key]["URL"];
+
+                        //creates readStatus checkbox and sets unique article key as id
+                        if(json[key]["readStatus"] == 1){
+                            readCheckbox = $("<div class='checkbox-inline'><label><input type='checkbox' value='one' id=" + key + " class='readArticle' checked>Read</label></div>");
+                        }   else{
+                                readCheckbox = $("<div class='checkbox-inline'><label><input type='checkbox' value='one' id=" + key + " class='readArticle'>Read</label></div>");
+                            }
+
+                        //creates div items to display article    
+                        returnDiv = $("<div class='resultDiv'><br/><hr/>");
+
+                        returnTitleH4 = $("<h4>" + returnTitle + "</h4>");
+                        $(returnDiv).append(returnTitleH4);
+
+                        returnDescP = $("<p>" + returnDesc + "</p><br/>");
+                        $(returnDiv).append(returnDescP);
+
+                        returnLinkBtn = $("<button>" + returnLink + "</button><br/>");
+                        $(returnDiv).append(returnLinkBtn);
+                        
+                        deleteBtn = $("<button class='delete' id=" + key +  ">X</button>");
+                        $(returnDiv).append(deleteBtn);
+
+                        $(returnDiv).append(readCheckbox);
+
+                        //displays unread items before read items
+                        if(json[key]["readStatus"] == 0) {
+                            $("#saveResults").prepend(returnDiv);
+
+                        }   else {
+                                $("#saveResults").append(returnDiv);
+                            }
+
+                        count ++;
+                    }
+               } //ends for loop 
+              
+            } //if json  
+        return count;
+            
+    }//ends function
+
 	$("#allSavedNews").click(function() {
 
     	$("#results").empty();
         $("#saveResults").empty();
 
-        return firebase.database().ref(uid + "/").once('value').then(function(snapshot) {
+        database.ref(uid + "/").once("value", function(snapshot)  {
             
             //captures snapshot of all the articles within the uid
             json = snapshot.val();
-            key = key;
+          
+            var count = 0;
+            if(json){
+                //stores number of articles (all articles in Firebase)
+                count =processJSON(json, -1);
+            }
+            
+            if (count == 0) {
+              saveMessageP = $("<h4>You haven't saved anything yet.</h4>");
+              saveMessageDiv();
 
-            if (json){
-
-                //loops thru keys
-                //calls retrieveSaved function to retrieve values from Firebase and display them
-                for (var key in json) {
-            	    returnTitle = json[key]["title"];
-                    returnDesc =  json[key]["description"];
-                    returnLink =  json[key]["URL"];
-                    //creates readStatus checkbox and sets unique article key as id
-                    if(json[key]["readStatus"] == "read"){
-                        readCheckbox = $("<div class='checkbox-inline'><label><input type='checkbox' value='one' id=" + key + " class='readArticle' checked>Read</label></div>");
-                    }   else{
-                            readCheckbox = $("<div class='checkbox-inline'><label><input type='checkbox' value='one' id=" + key + " class='readArticle'>Read</label></div>");
-                        }
-                    savedDiv(key);
-        	   } //ends for loop 
-
-            }   else { 
-                    saveMessageP = $("<h4>You haven't saved anything yet.</h4>");
-                    saveMessageDiv();
-                }  
+            }
         
     	}); //ends return
 
@@ -188,36 +219,19 @@ $(document).ready(function() {
         $("#results").empty();
         $("#saveResults").empty();
 
-        return firebase.database().ref(uid + "/").once('value').then(function(snapshot) {
+        database.ref(uid + "/").once('value').then(function(snapshot) {
 
-            //captures snapshot of all the articles within the uid
             json = snapshot.val();
-            key = key;
-
-            if (json){
-
-                var readCount = 0;
-
-                for (var key in json) {
-                    if(json[key]["readStatus"] == "read") {
-                        returnTitle = json[key]["title"];
-                        returnDesc =  json[key]["description"];
-                        returnLink =  json[key]["URL"];
-                        readCheckbox = $("<div class='checkbox-inline'><label><input type='checkbox' value='one' id=" + key + " class='readArticle' checked>Read</label></div>");
-                        savedDiv();
-                        readCount++;
-                    }//ends first if json[key]
-                } //ends for loop
-
-            }   else { 
-                    saveMessageP = $("<h4>You haven't saved anything yet.</h4>");
-                    saveMessageDiv();
-                }
+            var readCount = 0;
+            if(json){
+                //stores number of read files
+                readCount =processJSON(json, 1);
+            }
 
             if (readCount == 0) {
                 saveMessageP = $("<h4>You don't have any read items.</h4>");
                 saveMessageDiv();
-            }  
+            } 
         
         }); //ends return
 
@@ -228,35 +242,19 @@ $(document).ready(function() {
         $("#results").empty();
         $("#saveResults").empty();
 
-        return firebase.database().ref(uid + "/").once('value').then(function(snapshot) {
+        database.ref(uid + "/").once('value').then(function(snapshot) {
 
             json = snapshot.val();
-            key = key;
-
-            if (json){
-
-                var unreadCount = 0;
-
-                for (var key in json) {
-                    if(json[key]["readStatus"] == "not read") {
-                        returnTitle = json[key]["title"];
-                        returnDesc =  json[key]["description"];
-                        returnLink =  json[key]["URL"];
-                        readCheckbox = $("<div class='checkbox-inline'><label><input type='checkbox' value='one' id=" + key + " class='readArticle'>Read</label></div>");                
-                        savedDiv();
-                        unreadCount++;
-                    }//ends first if json[key]
-                } //ends for loop
-
-            }   else { 
-                    saveMessageP = $("<h4>You haven't saved anything yet.</h4>");
-                    saveMessageDiv();
-                }
+            var unreadCount = 0;
+            if(json){
+                //stores number of unread files
+                unreadCount =processJSON(json, 0);
+            }
 
             if (unreadCount == 0) {
                 saveMessageP = $("<h4>You don't have any unread items.</h4>");
                 saveMessageDiv();
-            }   
+            }  
         
         }); //ends return
 
