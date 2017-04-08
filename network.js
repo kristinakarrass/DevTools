@@ -28,8 +28,13 @@ $("#submit").on("click", function() {
                 resultsDiv.append(gitUser);
                 resultsDiv.append(gitDescription);
                 resultsDiv.append(gitURL);
+                
+                resultsDiv.append("<button class='button'>Save</button><br/><hr/>");
+                         
                 resultsDiv.append("<button class='button'>Save</button>");
+
                 //append results to resultsDiv
+
                 $(".results").append(resultsDiv);
             }
             //if no results are found, alert user to start over
