@@ -24,7 +24,6 @@ $("#submit").on("click", function() {
                 resultsDiv.append(gitUser);
                 resultsDiv.append(gitDescription);
                 resultsDiv.append(gitURL);
-                resultsDiv.appen("<button class='button'>x</button>");
                 resultsDiv.append("<button class='button'>Save</button>");
 
                 $(".results").append(resultsDiv);
