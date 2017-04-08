@@ -88,11 +88,12 @@
             });
  
         })
-        $("#userLocation").val("");
+
     });
 
     //retrieve user location from database and display it on map
     database.ref().on("child_added", function(childSnapshot) {
+
         //creating variables from childsnapshot for marker on map
         var location = childSnapshot.val().location;
         var userLng = childSnapshot.val().longitude;
@@ -102,6 +103,7 @@
                 'marker-size' : 'medium',
                 'marker-color' : '#4aaaa5'
             })
+
         })  //popup showing user location and add it to map
             .bindPopup(location)
             .addTo(map);
@@ -113,6 +115,7 @@
             'marker-size': 'medium',
             'marker-color': '#4aaaa5'
         })
+
     })
         .bindPopup("UNC Chapel Hill Bootcamp, NC, USA")
         .addTo(map);
