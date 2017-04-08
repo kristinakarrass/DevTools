@@ -10,3 +10,48 @@
 	color: red;
 }
 
+.btn {
+	width:125px;
+	/*font-weight:800;*/
+}
+
+#title {
+	font-size:50px;
+}
+
+.container map {
+	text-align:center;
+}
+
+
+#savedbody {
+	background-color:green;
+}
+
+#redditbody {
+	background-image: url(../images/redditbackground.png);
+}
+
+h1 {
+	text-align:center;
+}
+
+#map {
+        /*position: absolute;*/
+        top: 0;
+        bottom: 0;
+        width: 100%;
+    }   
+
+
+ #submit {
+ 	margin-bottom:20px;
+ }
+
+ #locationForm {
+ 	position:relative;
+ 	z-index:100;
+ 	bottom:70px;
+ 	left:350px;
+ }
+
