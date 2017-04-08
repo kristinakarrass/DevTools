@@ -1,46 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset=utf-8 />
-    <title>User Location Markers</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
-    <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
-
-    <style>
-    body {
-        margin: 0;
-        padding: 0;
-    }
-    
-    #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-    }   
-     #locationForm {
-        position: relative;
- 		top: 400px;
- 		left: 400px;
-    }
-    </style>
-</head>
-
-<body>
-
-    <div id='map' style="width: 600px; height: 500px;"></div>
-    <form id="locationForm">
-        <input type="text" id="userLocation">
-        <br>
-        <button id="add-location" type="submit" class="btn btn-info">Add your location</button>
-    </form>
-    <script>
-
-
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCslYrCxbDfzGaaUL9ooO5oq2bHasApGoY",
@@ -88,12 +45,11 @@
             });
  
         })
-
+        $("#userLocation").val("");
     });
 
     //retrieve user location from database and display it on map
     database.ref().on("child_added", function(childSnapshot) {
-
         //creating variables from childsnapshot for marker on map
         var location = childSnapshot.val().location;
         var userLng = childSnapshot.val().longitude;
@@ -103,7 +59,6 @@
                 'marker-size' : 'medium',
                 'marker-color' : '#4aaaa5'
             })
-
         })  //popup showing user location and add it to map
             .bindPopup(location)
             .addTo(map);
@@ -115,12 +70,7 @@
             'marker-size': 'medium',
             'marker-color': '#4aaaa5'
         })
-
     })
         .bindPopup("UNC Chapel Hill Bootcamp, NC, USA")
         .addTo(map);
 
-    </script>
-</body>
-
-</html>
