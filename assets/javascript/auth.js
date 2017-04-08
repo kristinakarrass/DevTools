@@ -2,14 +2,12 @@
 $(document).ready(function(){
 
     var provider = new firebase.auth.GoogleAuthProvider();
-    // var provider = new firebase.auth.GithubAuthProvider();
     window.uid;
-    // buttoncallback
+
     function toggleSignIn() {
         if (!firebase.auth().currentUser) {
             //creates provider
             var provider = new firebase.auth.GoogleAuthProvider();
-            // var provider = new firebase.auth.GithubAuthProvider();
 
             provider.addScope('https://www.googleapis.com/auth/plus.login');
             
@@ -38,7 +36,6 @@ $(document).ready(function(){
                 firebase.auth().signOut();
             }
         document.getElementById('GoogleSignIn').disabled = true;
-        // document.getElementById('GithubSignIn').disabled = true;
     }//ends toggleSignIn
  
     //sets up UI event listeners and registers Firebase auth listeners:
@@ -46,8 +43,8 @@ $(document).ready(function(){
     function initApp() {
         // Listens for auth state changes
         firebase.auth().onAuthStateChanged(function(user) {
+            //user is signed in
             if (user) {
-                //user is signed in
                 var displayName = user.displayName;
                 var email = user.email;
                 var emailVerified = user.emailVerified;
@@ -57,18 +54,14 @@ $(document).ready(function(){
                 var providerData = user.providerData;
                 document.getElementById('GoogleSignInStatus').textContent = 'Signed in';
                 document.getElementById('GoogleSignIn').textContent = 'Sign out';
-                // document.getElementById('GithubSignIn').textContent = 'Sign out';
+                 // user is signed out
             }   else {
-                    // user is signed out
                     document.getElementById('GoogleSignInStatus').textContent = 'Signed out';
                     document.getElementById('GoogleSignIn').textContent = 'Sign in with Google';
-                    // document.getElementById('GithubSignIn').textContent = 'Sign in with Google';
                 }
             document.getElementById('GoogleSignIn').disabled = false;
-            // document.getElementById('GithubSignIn').disabled = false;
         });
         document.getElementById('GoogleSignIn').addEventListener('click', toggleSignIn, false);
-        // document.getElementById('GithubSignIn').addEventListener('click', toggleSignIn, false);
     }
 
     initApp();
