@@ -17,9 +17,11 @@ firebase.initializeApp(config);
 var database =  firebase.database();
 
 $(document).ready(function() {
-    
+    $("#saveMessageDiv").hide();
+
     //stores user and article info in database
 	function storeArticle() {
+        $("#saveMessageDiv").hide();
         //gets id of the clicked article (which is set to the unique article identifier from Firebase)
         var articleTitle = $(this).attr("id");
         //identifies whether an article. has been saved already
@@ -34,7 +36,7 @@ $(document).ready(function() {
                 if (articleTitle == childSnapshot.val().title) {
                     duplicate = true;
                     $("#saveMessage").html("You already saved this item.");
-                    $(saveMessageDiv).show();
+                    $("#saveMessageDiv").show();
                 } 
             });
             //saves article in Firebase if not a duplicate  
@@ -43,7 +45,6 @@ $(document).ready(function() {
                 var titleToStore = parentToStore.childNodes[2].innerHTML;
                 var descToStore = parentToStore.childNodes[3].innerHTML;
                 var urlToStore = parentToStore.childNodes[6].innerHTML;
-                $("#saveMessage").empty();
                 database.ref(uid + '/').push({
                     title: titleToStore,
                     description: descToStore,
@@ -85,16 +86,16 @@ $(document).ready(function() {
 
     }//ends readStatus function
 
-    //global variable needed for saveMessageDiv function
-    var saveMessageP;
+    // //global variable needed for saveMessageDiv function
+    // var saveMessageP;
 
-    //creates div for messages
-    function saveMessageDiv() {
-        var saveMessageDiv = $("<div id='saveMessage'>");
-        $(saveMessageDiv).append(saveMessageP);
-        $("#saveResults").append(saveMessageDiv);
-        $("#saveMessage").css("color", "red");
-    }
+    // //creates div for messages
+    // function saveMessageDiv() {
+    //     var saveMessageDiv = $("<div id='saveMessage'>");
+    //     $(saveMessageDiv).append(saveMessageP);
+    //     $("#saveResults").append(saveMessageDiv);
+    //     $("#saveMessage").css("color", "red");
+    // }
 
     function deleteArticle() {
 
@@ -187,6 +188,7 @@ $(document).ready(function() {
 
     	$("#results").empty();
         $("#saveResults").empty();
+        $("#saveMessageDiv").hide();
 
         database.ref(uid + "/").once("value", function(snapshot)  {
             
@@ -200,8 +202,8 @@ $(document).ready(function() {
             }
             
             if (count == 0) {
-              saveMessageP = $("<h4>You haven't saved anything yet.</h4>");
-              saveMessageDiv();
+              $("#saveMessage").html("You haven't saved anything yet.");
+              $("#saveMessageDiv").show();
 
             }
         
@@ -218,6 +220,7 @@ $(document).ready(function() {
 	
         $("#results").empty();
         $("#saveResults").empty();
+        $("#saveMessageDiv").hide();
 
         database.ref(uid + "/").once('value').then(function(snapshot) {
 
@@ -229,8 +232,8 @@ $(document).ready(function() {
             }
 
             if (readCount == 0) {
-                saveMessageP = $("<h4>You don't have any read items.</h4>");
-                saveMessageDiv();
+                $("#saveMessage").html("You don't have any read items.");
+                $("#saveMessageDiv").show();
             } 
         
         }); //ends return
@@ -241,6 +244,7 @@ $(document).ready(function() {
 	
         $("#results").empty();
         $("#saveResults").empty();
+        $("#saveMessageDiv").hide();
 
         database.ref(uid + "/").once('value').then(function(snapshot) {
 
@@ -252,8 +256,8 @@ $(document).ready(function() {
             }
 
             if (unreadCount == 0) {
-                saveMessageP = $("<h4>You don't have any unread items.</h4>");
-                saveMessageDiv();
+                $("#saveMessage").html("You don't have any unread items.");
+                $("#saveMessageDiv").show();
             }  
         
         }); //ends return
