@@ -21,7 +21,7 @@ $(document).ready(function() {
         });
 
         //displays query results
-        apiResponse.done(function(response){
+        apiResponse.done(function(response) {
 
             //stores items returned
             var apiData = response.data.children;
@@ -65,9 +65,9 @@ $(document).ready(function() {
                     $("#results").append("<p id='noResultsMessage'> Sorry, no results are available for that search.<br/>Please try another search term.</p>");
                 }
 
-        });//end apiResponse.done
+        });//ends apiResponse.done
 
-    });//end submit click
+    });//ends submit click
 
-});//end document.ready
+});//ends document.ready
 
