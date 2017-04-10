@@ -1,69 +1,51 @@
 
-$(document).ready(function(){
+$(document).ready(function() {
 
-    var provider = new firebase.auth.GoogleAuthProvider();
+    var provider;
     window.uid;
 
     function toggleSignIn() {
+        //if there's no current user
         if (!firebase.auth().currentUser) {
             //creates provider
-            var provider = new firebase.auth.GoogleAuthProvider();
-
-            provider.addScope('https://www.googleapis.com/auth/plus.login');
-            
+            provider = new firebase.auth.GoogleAuthProvider();
+            //displays Google sign-in popup
             firebase.auth().signInWithPopup(provider).then(function(result) {
-                // gives a Google Access Token 
-                var token = result.credential.accessToken;
-                // signed-in user info.
-                var user = result.user;
-                
+                $("#saveMessageDiv").hide();
+            //captures and displays any errors
             }).catch(function(error) {
-                  // handles errors
                   var errorCode = error.code;
                   var errorMessage = error.message;
-                  // email of the user's account used
-                  var email = error.email;
-                  // the firebase.auth.AuthCredential type that was used
-                  var credential = error.credential;
-                  if (errorCode === 'auth/account-exists-with-different-credential') {
-                      alert('You have already signed up with a different auth provider for that email.');
-                  }   else {
-                          console.error(error);
-                      }
+                  $("#saveMessage").html("Login Failed. " + errorMessage);
+                  $("#saveMessageDiv").show();    
+                  console.log(errorCode);
+                  console.log(errorMessage);
               });
         }//ends if stmt  
             else {
+                //if there is a current user, signs them out
                 firebase.auth().signOut();
             }
-        document.getElementById('GoogleSignIn').disabled = true;
-    }//ends toggleSignIn
+    }//ends toggleSignIn()
  
     //sets up UI event listeners and registers Firebase auth listeners:
-    //firebase.auth().onAuthStateChanged is called when the user is signed in or out
     function initApp() {
         // Listens for auth state changes
         firebase.auth().onAuthStateChanged(function(user) {
-            //user is signed in
+            //changes to a sign out button and updates status when user is signed in
             if (user) {
-                var displayName = user.displayName;
-                var email = user.email;
-                var emailVerified = user.emailVerified;
-                var photoURL = user.photoURL;
-                var isAnonymous = user.isAnonymous;
-                uid = user.uid;
-                var providerData = user.providerData;
                 document.getElementById('GoogleSignInStatus').textContent = 'Signed in';
                 document.getElementById('GoogleSignIn').textContent = 'Sign out';
-                 // user is signed out
+                //changes to a sign in button and updates status when user is signed out
             }   else {
                     document.getElementById('GoogleSignInStatus').textContent = 'Signed out';
                     document.getElementById('GoogleSignIn').textContent = 'Sign in with Google';
                 }
-            document.getElementById('GoogleSignIn').disabled = false;
         });
-        document.getElementById('GoogleSignIn').addEventListener('click', toggleSignIn, false);
-    }
+        //calls toggleSignIn when clicked
+        document.getElementById('GoogleSignIn').addEventListener('click', toggleSignIn);
+    }//ends initApp()
 
     initApp();
 
-});//end document.ready
+});//ends document.ready

@@ -1,5 +1,3 @@
-//stuck title as id of button
-
 
 //initializes Firebase
 var config = {
@@ -78,24 +76,13 @@ $(document).ready(function() {
                                     readStatus: 0
                             });
                         }
-                } //ends if articleKey
+                }//ends if articleKey
 
             });//ends snapshot
         
         });//ends return
 
     }//ends readStatus function
-
-    // //global variable needed for saveMessageDiv function
-    // var saveMessageP;
-
-    // //creates div for messages
-    // function saveMessageDiv() {
-    //     var saveMessageDiv = $("<div id='saveMessage'>");
-    //     $(saveMessageDiv).append(saveMessageP);
-    //     $("#saveResults").append(saveMessageDiv);
-    //     $("#saveMessage").css("color", "red");
-    // }
 
     function deleteArticle() {
 
@@ -144,7 +131,7 @@ $(document).ready(function() {
                         returnLink =  json[key]["URL"];
 
                         //creates readStatus checkbox and sets unique article key as id
-                        if(json[key]["readStatus"] == 1){
+                        if(json[key]["readStatus"] == 1) {
                             readCheckbox = $("<div class='checkbox-inline'><label><input type='checkbox' value='one' id=" + key + " class='readArticle' checked>Read</label></div>");
                         }   else{
                                 readCheckbox = $("<div class='checkbox-inline'><label><input type='checkbox' value='one' id=" + key + " class='readArticle'>Read</label></div>");
@@ -176,13 +163,13 @@ $(document).ready(function() {
                             }
 
                         count ++;
-                    }
-               } //ends for loop 
+                    }// ends if stmt
+               }//ends for loop 
               
-            } //if json  
+            }//ends if json  
         return count;
             
-    }//ends function
+    }//ends processJSON
 
 	$("#allSavedNews").click(function() {
 
@@ -190,24 +177,24 @@ $(document).ready(function() {
         $("#saveResults").empty();
         $("#saveMessageDiv").hide();
 
-        database.ref(uid + "/").once("value", function(snapshot)  {
+        database.ref(uid + "/").once("value", function(snapshot) {
             
             //captures snapshot of all the articles within the uid
             json = snapshot.val();
           
             var count = 0;
-            if(json){
+            if(json) {
                 //stores number of articles (all articles in Firebase)
-                count =processJSON(json, -1);
+                count = processJSON(json, -1);
             }
             
             if (count == 0) {
-              $("#saveMessage").html("You haven't saved anything yet.");
-              $("#saveMessageDiv").show();
+                $("#saveMessage").html("You haven't saved anything yet.");
+                $("#saveMessageDiv").show();
 
             }
         
-    	}); //ends return
+    	});//ends return
 
 	});//ends retrieveNews click
 
@@ -228,7 +215,7 @@ $(document).ready(function() {
             var readCount = 0;
             if(json){
                 //stores number of read files
-                readCount =processJSON(json, 1);
+                readCount = processJSON(json, 1);
             }
 
             if (readCount == 0) {
@@ -236,9 +223,9 @@ $(document).ready(function() {
                 $("#saveMessageDiv").show();
             } 
         
-        }); //ends return
+        });//ends return
 
-    }); //ends readNews on click
+    });//ends readNews on click
 
     $("#unreadNews").on("click", function(event) {
 	
@@ -260,9 +247,9 @@ $(document).ready(function() {
                 $("#saveMessageDiv").show();
             }  
         
-        }); //ends return
+        });//ends return
 
-    }); //ends unreadNews on click
+    });//ends unreadNews on click
 
 });//ends document.ready
 
