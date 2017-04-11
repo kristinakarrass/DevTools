@@ -40,7 +40,7 @@ $(document).ready(function() {
                     saveButton.addClass("saveButton");
                     saveButton.text("Save");
                     newDiv.append(saveButton);
-                    newDiv.append("<br>");
+                    // newDiv.append("<br>");
                     
                     newDiv.append("<button><a href='"+ vidIdFullLink+"'" + "target='_blank'>View</a></button>");
                     //note to frontend person! please style the text on this button so it doesnt have standard link formatting and looks like standard button text.
