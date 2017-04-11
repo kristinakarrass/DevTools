@@ -44,7 +44,10 @@ h1 {
         width: 100%;
         left:0px;
         margin-top:30px;
-        
+       /* border-color:royalblue;
+        border-width:10px;*/
+        border:10px solid royalblue;
+
     }   
 
 
@@ -100,5 +103,13 @@ h1 {
 
 #searchTerm {
 	border-width: 3px;
+}
+
+body {
+    background: url("../images/clouds.jpg");
+    background-size: cover;
+    /*background-position: 100% 100%;
+    background-repeat: no-repeat;
+    /*background-attachment: local;*/*/
 }
 
