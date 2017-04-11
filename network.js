@@ -31,10 +31,10 @@ $("#submit").on("click", function() {
                     resultsDiv.append(gitURL);
                     //append results to resultsDiv
                     $(".results").append(resultsDiv);
-                }
+                } //closes for loop
                 //if no results are found, alert user to start over
             } else {
                 $(".results").html("<h1>No results for this search. </br> Please choose a different search term.</h1>");
-            }
+             } //closes else statement
         }) //closes done function
 }); //closes click function
