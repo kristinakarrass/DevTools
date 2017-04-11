@@ -6,20 +6,22 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  	
+  	<title>DevTools</title>
+
   	<!-- Reset Style Sheet -->
 	<link rel="stylesheet" href="assets/css/reset.css">
   	
   	<!--link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-	
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+		
 	<!-- CSS Style Sheet -->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<!-- Firebase Link -->
 	<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 </head>
-<body id="savedbody">
+<body id="mainbody">
 
 <div id = "draw-shapes"></div> <!-- logo goes here -->
 
@@ -28,33 +30,120 @@
 
 <!-- <div class="page-header">
   <h1>devTools</h1>
+<<<<<<< HEAD
 </div> -->
-	<div class ="row">
-		<a href="youtube.html"><div class= "col-sm-3">
+	
+		<!-- <a href="youtube.html"><div class= "col-sm-3">
 			<button type="button" class="btn btn-primary">YouTube</button>
 		</div></a>
 		<div class= "col-sm-3">
 			<a href="github.html"><button type="button" class="btn btn-primary ">GitHub</button></a>
-		</div>
-		<div class= "col-sm-3">
-			<a href="reddit.html"><button type="button" class="btn btn-primary ">reddit</button></a>
-		</div>
-		<div class= "col-sm-3">
-			<a href="save.html"<button type="button" class="btn btn-primary ">Save</button></a>
+
+ </div>
+ -->
+
+
+	<div class ="row"><!-- Dropdown Button Row -->
+
+	 	<div class="col-sm-3 col-xs-3"><!-- Column for the News Dropdown Button -->
+	
+		<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle center-block" type="button" id="menu1" data-toggle="dropdown">News
+  				<span class="caret"></span></button>
+  					<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+    					<li role="presentation"><a role="menuitem" href="reddit.html">Reddit</a></li>
+					    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+					    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+					    <li role="presentation" class="divider"></li>
+					    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+				  	</ul>
+				</div>
+
 		</div>
 
-		<br><br><br>
 
-		<h1> SAVED PAGE</h1>
+		<div class="col-sm-3 col-xs-3"><!-- Column for the Network Dropdown Button -->
+
+		<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle center-block" type="button" id="menu1" data-toggle="dropdown">Network
+  				<span class="caret"></span></button>
+  					<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+					    <li role="presentation"><a role="menuitem" href="github.html">GitHub</a></li>
+					    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+					    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+					    <li role="presentation" class="divider"></li>
+					    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+  					</ul>
+				</div>
+		</div>
+
+
+		<div class="col-sm-3 col-xs-3"><!-- Column for the Social Media Dropdown Butto -->
+
+		<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle center-block" type="button" id="menu1" data-toggle="dropdown">Social Media
+  				<span class="caret"></span></button>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+				    <li role="presentation"><a role="menuitem" href="youtube.html">YouTube</a></li>
+				    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+				    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+				    <li role="presentation" class="divider"></li>
+				    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+				  </ul>
+				</div>
+		</div>
+
+
+	<div class="col-sm-3 col-xs-3"><!--Column for the Saved Button-->
+
+		<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle center-block" type="button" id="menu1" data-toggle="dropdown">Saved
+  				<span class="caret"></span></button>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+				    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+				    <li role="presentation"><a role="menuitem" href="#">CSS</a></li>
+				    <li role="presentation"><a role="menuitem" href="#">JavaScript</a></li>
+				    <li role="presentation" class="divider"></li>
+				    <li role="presentation"><a role="menuitem" href="#">About Us</a></li>
+				  </ul>
+		</div>
+	</div> 
+		
+		
+	</div><!-- End of Row for Buttons -->
+	
+
+	<br><br>
+	<input type="text" class="form-control" id="searchTerm" placeholder="Search YouTube" /><br>
+    <button type="submit" id="submit" class="btn btn-default">Submit</button>                  
+	<div class="results"></div>
+
+	<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-lg-12">
+			<div id="results"></div>
+		</div>
+	</div>
+</div>
+	
+
 
 </div><!-- End Main Conatiner Tag -->
 	<!--JQUERY -->
+
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<script type="text/javascript" src="assets/javascript/auth.js"></script>
   	<script type="text/javascript" src="assets/javascript/news.js"></script>
 	<script type="text/javascript" src="network.js"></script>
 	<script type="text/javascript" src="assets/javascript/two.js"></script>
 	<script type="text/javascript" src="assets/javascript/logo.js"></script>
+
+	<
+	<script type="text/javascript" src="assets/javascript/socialMedia.js"></script>
+  	<!-- <script type="text/javascript" src="assets/javascript/news.js"></script> -->
+	<!-- <script type="text/javascript" src="network.js"></script> -->
+	<script type="text/javascript" src="assets/javascript/bootstrap.js"></script>
+
 	
 </body>
 </html>
