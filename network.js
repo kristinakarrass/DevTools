@@ -23,15 +23,16 @@ $("#submit").on("click", function() {
                 var gitTitle = $("<p>").html("Title: " + response.items[i].name);
                 var gitUser = $("<p>").html("Git User: " + response.items[i].owner.login);
                 var gitDescription = $("<p>").html("Description: " + response.items[i].description);
-                var gitURL = $("<button class='button'><a href='" + response.items[i].html_url + "'target='none'>View</a></button>");
+                var gitURL = $("<button class='button'><a href='" + response.items[i].html_url + "'target='none'>View</a></button><br/><hr/>");
                 resultsDiv.append(gitTitle);
                 resultsDiv.append(gitUser);
                 resultsDiv.append(gitDescription);
-                resultsDiv.append(gitURL);
                 
-                resultsDiv.append("<button class='button'>Save</button><br/><hr/>");
-                         
+                
                 resultsDiv.append("<button class='button'>Save</button>");
+                resultsDiv.append(gitURL);    
+                         
+                // resultsDiv.append("<button class='button'>Save</button>");
 
                 //append results to resultsDiv
 
