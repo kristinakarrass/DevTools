@@ -19,6 +19,7 @@ $(document).ready(function() {
 
     //stores user and article info in database
 	function storeArticle() {
+        console.log(uid);
         $("#saveMessageDiv").hide();
         //gets id of the clicked article (which is set to the unique article identifier from Firebase)
         var articleTitle = $(this).attr("id");

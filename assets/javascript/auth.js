@@ -1,5 +1,4 @@
-
-$(document).ready(function() {
+$(document).ready(function(){
 
     var provider;
     window.uid;
@@ -12,7 +11,9 @@ $(document).ready(function() {
             //displays Google sign-in popup
             firebase.auth().signInWithPopup(provider).then(function(result) {
                 $("#saveMessageDiv").hide();
-            //captures and displays any errors
+                //captures all user data captured by Google
+                user = result.user;
+            //captures and displays any errors   
             }).catch(function(error) {
                   var errorCode = error.code;
                   var errorMessage = error.message;
@@ -20,27 +21,32 @@ $(document).ready(function() {
                   $("#saveMessageDiv").show();    
                   console.log(errorCode);
                   console.log(errorMessage);
-              });
-        }//ends if stmt  
+               });
+        }//ends if stmt 
             else {
                 //if there is a current user, signs them out
                 firebase.auth().signOut();
             }
-    }//ends toggleSignIn()
+        
+    }//ends toggleSignIn
  
-    //sets up UI event listeners and registers Firebase auth listeners:
+    //registers Firebase auth listeners:
     function initApp() {
         // Listens for auth state changes
         firebase.auth().onAuthStateChanged(function(user) {
-            //changes to a sign out button and updates status when user is signed in
+            
             if (user) {
+                //stores the user's id 
+                uid = user.uid;
+                //changes to a sign out button and updates status when user is signed in
                 document.getElementById('GoogleSignInStatus').textContent = 'Signed in';
                 document.getElementById('GoogleSignIn').textContent = 'Sign out';
-                //changes to a sign in button and updates status when user is signed out
             }   else {
+                    //changes to a sign in button and updates status when user is signed out 
                     document.getElementById('GoogleSignInStatus').textContent = 'Signed out';
                     document.getElementById('GoogleSignIn').textContent = 'Sign in with Google';
                 }
+        
         });
         //calls toggleSignIn when clicked
         document.getElementById('GoogleSignIn').addEventListener('click', toggleSignIn);
@@ -48,4 +54,4 @@ $(document).ready(function() {
 
     initApp();
 
-});//ends document.ready
+});//end document.ready
