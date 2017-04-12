@@ -10,7 +10,7 @@
         event.preventDefault();
         //create user location (grab it from user input) and query variables
         var userLocation = $("#userLocation").val().trim();
-        var queryURL = 'http://maps.googleapis.com/maps/api/geocode/json?address=' + userLocation + '&sensor=false;'
+        var queryURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + userLocation + '&sensor=false;'
 
         $.ajax({
             url: queryURL,
