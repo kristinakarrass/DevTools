@@ -15,7 +15,6 @@ firebase.initializeApp(config);
 var database =  firebase.database();
 
 $(document).ready(function() {
-    $("#saveMessageDiv").hide();
 
     //stores user and article info in database
 	function storeArticle() {
