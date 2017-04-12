@@ -24,7 +24,7 @@ $("#submit").on("click", function() {
                 var gitTitle = $("<h4>").html(response.items[i].name);
                 var gitUser = $("<p>").html("Git User: " + response.items[i].owner.login);
                 var gitDescription = $("<p>").html("Description: " + response.items[i].description);
-                var gitURL = $("<button class='button'><a href='" + response.items[i].html_url + "'target='none'>View</a></button><br/><hr/>");
+                var gitURL = $("<button class='button' id='networkView' ><a href='" + response.items[i].html_url + "'target='none'>View</a></button><br/><hr/>");
                 resultsDiv.append(gitTitle);
                 resultsDiv.append(gitUser);
                 resultsDiv.append(gitDescription);
