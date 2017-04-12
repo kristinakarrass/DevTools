@@ -8,7 +8,7 @@ $(document).ready(function() {
     window.readStatus = "unread";
 
     $("#submitNews").click(function() {
-
+        event.preventDefault();
         $("#results").empty();
         $("#saveResults").empty();
         var userQuery = $("#search").val().trim();
