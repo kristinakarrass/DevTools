@@ -19,9 +19,11 @@ $(document).ready(function() {
 
     //stores user and article info in database
 	function storeArticle() {
+
         $("#saveMessageDiv").hide();
         //gets id of the clicked article (which is set to the unique article identifier from Firebase)
         var articleTitle = $(this).attr("id");
+        var articleSource = $(this).attr("data");
         //identifies whether an article. has been saved already
         var duplicate = false;
         //captures article clicked
@@ -37,20 +39,58 @@ $(document).ready(function() {
                     $("#saveMessageDiv").show();
                 } 
             });
+
             //saves article in Firebase if not a duplicate  
-            if (!duplicate){
+            if (!duplicate && articleSource == "reddit") {
+
                 var parentToStore = article.parentNode;
                 var titleToStore = parentToStore.childNodes[2].innerHTML;
                 var descToStore = parentToStore.childNodes[3].innerHTML;
-                var urlToStore = parentToStore.childNodes[6].innerHTML;
+                var urlToStore = parentToStore.childNodes[5].innerHTML;
                 database.ref(uid + '/').push({
                     title: titleToStore,
                     description: descToStore,
                     URL: urlToStore,
-                    readStatus: 0
+                    readStatus: 0,
+                    source: "reddit"
                 });
             }
-    	});//ends return
+
+            if (!duplicate && articleSource == "git") {
+                var parentToStore = article.parentNode;
+                var titleToStore = parentToStore.childNodes[0].innerHTML;
+                var gitUserToStore = parentToStore.childNodes[1].innerHTML;
+                var descToStore = parentToStore.childNodes[2].innerHTML;
+                var urlToStore = parentToStore.childNodes[4].innerHTML;
+                database.ref(uid + '/').push({
+                    title: titleToStore,
+                    gitUser: gitUserToStore,
+                    description: descToStore,
+                    URL: urlToStore,
+                    readStatus: 0,
+                    source: "git"
+                });
+            }
+
+             if (!duplicate && articleSource == "youtube") {
+                var parentToStore = article.parentNode;
+                var titleToStore = parentToStore.childNodes[2].innerHTML;
+                var descToStore = parentToStore.childNodes[3].innerHTML;
+                //var imgToStore = parentToStore.childNodes[4].innerHTML;
+            
+                //console.log ("img: " + imgToStore);
+                var urlToStore = parentToStore.childNodes[9].innerHTML;
+                database.ref(uid + '/').push({
+                    title: titleToStore,
+                    //image: imgToStore,
+                    description: descToStore,
+                    URL: urlToStore,
+                    readStatus: 0,
+                    source: "youtube"
+                });
+            }
+
+    	});//ends database.ref
         
 	}//ends storeArticle function
 
@@ -80,7 +120,7 @@ $(document).ready(function() {
 
             });//ends snapshot
         
-        });//ends return
+        });//ends database.ref
 
     }//ends readStatus function
 
@@ -106,12 +146,12 @@ $(document).ready(function() {
 
             });//ends snapshot
         
-        });//ends return
+        });//ends database.ref
     }
 
     //gets article information from Firebase and displays it
     function processJSON(json, readStatus) {
-
+            console.log("I am in processJSON");
         if (json){
 
                 var count = 0;
@@ -120,7 +160,7 @@ $(document).ready(function() {
                 var returnDescP;
                 var returnLinkBtn;
                 var deleteBtn;
-
+                
                 //loops thru keys & calls retrieveSaved() to retrieve values from Firebase and display them
                 for (var key in json) {
 
@@ -129,6 +169,14 @@ $(document).ready(function() {
                         returnTitle = json[key]["title"];
                         returnDesc =  json[key]["description"];
                         returnLink =  json[key]["URL"];
+
+                        if(json[key]["source"] == "git"){
+                            returnGitUser = json[key]["gitUser"];
+                        }
+
+                        // if(json[key]["source"] == "youtube"){
+                        //     returnImg = json[key]["image"];
+                        // }
 
                         //creates readStatus checkbox and sets unique article key as id
                         if(json[key]["readStatus"] == 1) {
@@ -143,21 +191,29 @@ $(document).ready(function() {
                         returnTitleH4 = $("<h4>" + returnTitle + "</h4>");
                         $(returnDiv).append(returnTitleH4);
 
+                        if(json[key]["source"] == "git"){
+                            returnGitUserP = $("<p>" + returnGitUser + "</p>");
+                            $(returnDiv).append(returnGitUserP);
+                        }
+
                         returnDescP = $("<p>" + returnDesc + "</p><br/>");
                         $(returnDiv).append(returnDescP);
 
-                        returnLinkBtn = $("<button>" + returnLink + "</button><br/>");
-                        $(returnDiv).append(returnLinkBtn);
-                        
+                        // if(json[key]["source"] == "youtube"){
+                        //     $(returnDiv).append(returnImg);
+                        // }
+
                         deleteBtn = $("<button class='delete' id=" + key +  ">X</button>");
                         $(returnDiv).append(deleteBtn);
 
+                        returnLinkBtn = $("<button>" + returnLink + "</button>");
+                        $(returnDiv).append(returnLinkBtn);
+                        
                         $(returnDiv).append(readCheckbox);
 
                         //displays unread items before read items
                         if(json[key]["readStatus"] == 0) {
                             $("#saveResults").prepend(returnDiv);
-
                         }   else {
                                 $("#saveResults").append(returnDiv);
                             }
@@ -172,7 +228,8 @@ $(document).ready(function() {
     }//ends processJSON
 
 	$("#allSavedNews").click(function() {
-
+        console.log("I am in allSavedNews");
+        $(".results").empty();
     	$("#results").empty();
         $("#saveResults").empty();
         $("#saveMessageDiv").hide();
@@ -194,7 +251,7 @@ $(document).ready(function() {
 
             }
         
-    	});//ends return
+    	});//ends database.ref
 
 	});//ends retrieveNews click
 
@@ -223,7 +280,7 @@ $(document).ready(function() {
                 $("#saveMessageDiv").show();
             } 
         
-        });//ends return
+        });//ends database.ref
 
     });//ends readNews on click
 
@@ -247,7 +304,7 @@ $(document).ready(function() {
                 $("#saveMessageDiv").show();
             }  
         
-        });//ends return
+        });//ends database.ref
 
     });//ends unreadNews on click
 

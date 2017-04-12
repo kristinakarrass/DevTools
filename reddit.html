@@ -27,16 +27,6 @@
 
 <div class = "container"><!-- Begin Main Container Tag -->
 
-
-<!-- <div class="page-header">
-  <h1>devTools</h1>
-<<<<<<< HEAD
- </div> -->
-
-
-
-
-
 	<div class ="row"><!-- Dropdown Button Row -->
 
 	 	<div class="col-sm-3 col-xs-3"><!-- Column for the News Dropdown Button -->
@@ -93,9 +83,9 @@
   			<button class="btn btn-default dropdown-toggle center-block" type="button" id="menu1" data-toggle="dropdown">Saved
   				<span class="caret"></span></button>
 				  <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-				    <li role="presentation"><a role="menuitem" href="saved.html">Saved Items</a></li>
-				    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
-				    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+				    <li id="allSavedNews" role="presentation"><a role="menuitem" href="saved.html">All</a></li>
+				    <li id="readNews" role="presentation"><a role="menuitem" href="saved.html">Read</a></li>
+				    <li id="unreadNews" role="presentation"><a role="menuitem" href="saved.html">Unread</a></li>
 				    <li role="presentation" class="divider"></li>
 				    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
 				  </ul>
@@ -105,87 +95,16 @@
 		
 		
 	</div><!-- End of Row for Buttons -->
-	
- 
- <br><br>
 
-
- <label for="search"></label>
-
- <!-- <label for="search">Search Term</label>
->>>>>>> ee8838bbea472c0109eb32dd511dd729714419f0
-	<input type="text" class="form-control" id="searchTerm" placeholder="Search Reddit" /><br>
-    <button type="submit" id="submit" class="btn btn-default">Submit</button>                  
-	<div class="results"></div>
-
-	<div class="container">
-	<div class="row">
-		<div class="col-xs-12 col-lg-12">
-			<div id="results"></div>
-		</div>
-	</div>
-</div> -->
-
-<!-- <body>
- 	<label for="search">Search Term</label>
-	<input type="text" class="form-control" id="searchTerm" />
-    <button type="submit" id="submit" class="btn btn-default">Submit</button>                  
-<div class="results"></div> -->
-
-
-	<!-- <div class="row">
-
-
-		     <form id="loginForm">
-				<label><b>Username</b></label>
-    			<input id="email" type="text" placeholder="Enter Username" name="uname" required>
-    			<label><b>Password</b></label>
-    			<input id="pass" type="password" placeholder="Enter Password" name="psw" required>
-    			<button type="submit">Login</button>
-    		   
-		    </form>
-
-		    <br>
-
-
- <button id="GoogleSignIn">Sign in with Google</button> -->
-
-			<br>
-
-		<div class="row redditrow1">
-			<div class="col-xs-12 col-lg-12">
-				<input id="search" type="text">
-				<button type="submit" id="submitNews" placeholder=""> Submit </button>
-			</div>
-		</div>
+			<br><br>
+		<input type="text" class="form-control" id="search" placeholder="Search Reddit" /><br>
+	    <button type="submit" id="submitNews" class="btn btn-default">Submit</button>                  
+		
+<div class="container">
 
 		<div class="row redditrow2">
 			<div id="saveMessageDiv" class="col-xs-12 col-lg-12">
 				<p id="saveMessage"></p>
-			</div>
-		</div>
-
-		<div class="row redditrow3">
-			<div class="col-xs-12 col-lg-12">
-				<div id="saveResults"></div>
-			</div>
-		</div>
-
-		<div class="row redditrow4">
-			<div class="col-xs-12 col-lg-12">
-				<button id="allSavedNews"> All Saved News </button>
-			</div>
-		</div>
-
-		<div class="row redditrow5">
-			<div class="col-xs-12 col-lg-12">
-				<button id="readNews"> Read News </button>
-			</div>
-		</div>
-
-		<div class="row redditrow6">
-			<div class="col-xs-12 col-lg-12">
-				<button id="unreadNews"> Unread News </button>
 			</div>
 		</div>
 
@@ -199,10 +118,13 @@
 
 </div><!-- End Main Conatiner Tag -->
 	<!--JQUERY -->
-	<
-	<!-- <script type="text/javascript" src="assets/javascript/auth.js"></script> -->
-  	<script type="text/javascript" src="assets/javascript/news.js"></script>
+	
+	<script type="text/javascript" src="assets/javascript/news.js"></script>
+  	<script type="text/javascript" src="assets/javascript/auth.js"></script>
+  	
 	<!-- <script type="text/javascript" src="network.js"></script> -->
+	<!-- <script type="text/javascript" src="assets/javascript/socialMedia.js"></script> -->
+	<script type="text/javascript" src="assets/javascript/save.js"></script>
 	<script type="text/javascript" src="assets/javascript/bootstrap.js"></script>
 	<script type="text/javascript" src="assets/javascript/two.js"></script>
 	<script type="text/javascript" src="assets/javascript/logo.js"></script>

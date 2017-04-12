@@ -45,13 +45,14 @@ $(document).ready(function() {
                     $(resultDiv).append(apiTitleH4);
                         
                     apiDesc = apiData[i].data.public_description;
-                    apiDescP = $("<p>" + apiDesc + "</p><br/>");
-                    apiDescP.attr("id", "articleDes")
+                    apiDescP = $("<p> Description: " + apiDesc + "</p>");
+                    apiDescP.attr("id", "articleDes");
                     $(resultDiv).append(apiDescP);
 
                     button = $("<button>Save</button>");
                     button.addClass("saveBtn");
-                    button.attr("id", apiTitle)
+                    button.attr("id", apiTitle);
+                    button.attr("data", "reddit");
                     $(resultDiv).append(button);
 
                     apiURL = 'http://reddit.com' + apiData[i].data.url;
