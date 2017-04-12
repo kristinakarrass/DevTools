@@ -42,7 +42,7 @@ $("#submit").on("click", function() {
             }
             //if no results are found, alert user to start over
         } else {
-            $(".results").html("<h1>No results for this search. </br> Please choose a different search term.</h1>");
+            $(".results").html("<p id='noResultsMessage'> Sorry, no results are available for that search.<br/>Please try another search term.</p>");
         }
     })
 });
