@@ -1,16 +1,5 @@
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCslYrCxbDfzGaaUL9ooO5oq2bHasApGoY",
-    authDomain: "user-location-f6937.firebaseapp.com",
-    databaseURL: "https://user-location-f6937.firebaseio.com",
-    projectId: "user-location-f6937",
-    storageBucket: "user-location-f6937.appspot.com",
-    messagingSenderId: "260601362565"
-  };
-  firebase.initializeApp(config);
-
-  var database = firebase.database();
-
+//references the database
+var database =  firebase.database();
     //create map 
     L.mapbox.accessToken = 'pk.eyJ1Ijoia3Jpa2FyciIsImEiOiJjajEwcmxpdmEwM2ZoMzJwZWNrc3hnYm13In0.8cXei-iPLO0qctadLZ9O9w';
     var map = L.mapbox.map('map', 'mapbox.streets')
@@ -28,17 +17,12 @@
             url: queryURL,
             method: "GET"
         }).done(function(response) {
-
-            console.log(response);
-            console.log(response.results[0].formatted_address);
-            console.log(response.results[0].geometry.location.lat);
-            console.log(response.results[0].geometry.location.lng);
             //create variables for latitude and longitude of user input
             var userLat = response.results[0].geometry.location.lat;
             var userLng = response.results[0].geometry.location.lng;
             var location = response.results[0].formatted_address;
 
-            database.ref().push({
+            database.ref("map/").push({
                 location: location,
                 latitude: userLat,
                 longitude: userLng
@@ -48,14 +32,14 @@
 
     });
 
-    database.ref().on("child_added", function(childSnapshot) {
+    database.ref("map/").on("child_added", function(childSnapshot) {
         console.log(childSnapshot.val().location);
 
         $("#userLocation").val("");
     });
 
     //retrieve user location from database and display it on map
-    database.ref().on("child_added", function(childSnapshot) {
+    database.ref("map/").on("child_added", function(childSnapshot) {
         //creating variables from childsnapshot for marker on map
         var location = childSnapshot.val().location;
 
