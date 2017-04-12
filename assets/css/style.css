@@ -11,6 +11,10 @@
     text-align: center;
 }
 
+#saveMessageDiv {
+    height: 30px
+}
+
 .btn {
     width: 125px;
 }
