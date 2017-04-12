@@ -206,7 +206,7 @@ $(document).ready(function() {
                         deleteBtn = $("<button class='delete' id=" + key +  ">X</button>");
                         $(returnDiv).append(deleteBtn);
 
-                        returnLinkBtn = $("<button>" + returnLink + "</button>");
+                        returnLinkBtn = $("<button class='linkButton'>" + returnLink + "</button>");
                         $(returnDiv).append(returnLinkBtn);
                         
                         $(returnDiv).append(readCheckbox);
