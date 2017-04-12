@@ -1,3 +1,6 @@
+$("#saveMessage").html("Please sign-in before using our site.");
+$("#saveMessageDiv").show();
+
 $(document).ready(function(){
 
     var provider;
