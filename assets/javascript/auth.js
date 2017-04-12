@@ -44,7 +44,7 @@ $(document).ready(function(){
             }   else {
                     //changes to a sign in button and updates status when user is signed out 
                     // document.getElementById('GoogleSignInStatus').textContent = 'Signed out';
-                    document.getElementById('GoogleSignIn').textContent = 'Sign in with Google';
+                    document.getElementById('GoogleSignIn').textContent = 'Google Sign-In';
                 }
         
         });
