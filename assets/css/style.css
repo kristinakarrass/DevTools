@@ -300,7 +300,7 @@ body {
 
 @media screen and (max-width: 550px) {
     #alt-logo img {
-        max-width: 450px;
+        max-width: 420px;
     }
     #locationForm {
         left: 170px;
