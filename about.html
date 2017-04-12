@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>devTools</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
+
+  	<title>DevTools</title>
+
+  	<!-- Reset Style Sheet -->
+	<link rel="stylesheet" href="assets/css/reset.css">
+  	
+  	<!--link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+		
+	<!-- CSS Style Sheet -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- Firebase Link -->
+	<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+</head>
+<body id="mainbody">
+
+<a href="index.html"> <div id = "draw-shapes"></div> </a>
+<div id = "alt-logo">
+       <a href="index.html"> <img src = "assets/images/devToolsTransparentLogo.png" alt = "DevTools"> </a>
+    </div>
+<div class = "container"><!-- Begin Main Container Tag -->
+
+	<div class ="row"><!-- Dropdown Button Row -->
+
+	 	<div class="col-sm-3 col-xs-3"><!-- Column for the News Dropdown Button -->
+	
+		<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle center-block" type="button" id="menu1" data-toggle="dropdown">News
+  				<span class="caret"></span></button>
+  					<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+    					<li role="presentation"><a role="menuitem" href="reddit.html">Reddit</a></li>
+					    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+					    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+					    <li role="presentation" class="divider"></li>
+					    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+				  	</ul>
+				</div>
+		</div>
+
+
+		<div class="col-sm-3 col-xs-3"><!-- Column for the Network Dropdown Button -->
+
+		<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle center-block" type="button" id="menu1" data-toggle="dropdown">Network
+  				<span class="caret"></span></button>
+  					<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+					    <li role="presentation"><a role="menuitem" href="github.html">GitHub</a></li>
+					    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+					    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+					    <li role="presentation" class="divider"></li>
+					    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+  					</ul>
+				</div>
+		</div>
+
+
+		<div class="col-sm-3 col-xs-3"><!-- Column for the Social Media Dropdown Butto -->
+
+		<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle center-block" type="button" id="menu1" data-toggle="dropdown">Social Media
+  				<span class="caret"></span></button>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+				    <li role="presentation"><a role="menuitem" href="youtube.html">YouTube</a></li>
+				    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+				    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+				    <li role="presentation" class="divider"></li>
+				    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+				  </ul>
+				</div>
+		</div>
+
+
+	<div class="col-sm-3 col-xs-3"><!-- Column for the Saved Button -->
+
+		<div class="dropdown">
+  			<button class="btn btn-default dropdown-toggle center-block" type="button" id="menu1" data-toggle="dropdown">Saved
+  				<span class="caret"></span></button>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+				    <li id="allSavedNews" role="presentation"><a role="menuitem" href="saved.html">All</a></li>
+				    <li id="readNews" role="presentation"><a role="menuitem" href="saved.html">Read</a></li>
+				    <li id="unreadNews" role="presentation"><a role="menuitem" href="saved.html">Unread</a></li>
+				    <li role="presentation" class="divider"></li>
+				    <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+				  </ul>
+		</div>
+	</div>
+		
+		
+		
+	</div><!-- End of Row for Buttons -->
+	
+
+	<br><br>
+
+		<div class="row"> <!-- text goes here -->
+		<div class="panel panel-default" id = "bigBox">
+		<div class="panel-body" id = "aboutText">
+		<div id = "myHeading">Welcome to the web developer's all-in-one toolbox!</div>
+		<div id = "myBody">Stop us if this scene sounds familiar: you sit down to code a site, and find yourself opening page after page as you research the technologies you'll need. Before you know it, you've got something like 100 different tabs open in your browser window. You find yourself frustratedly clicking through them all, attempting to remember which is which as you navigate back and forth - with so many links open, there's no room to see each page title! On top of that, your computer's running slower. But what if you could potentially save yourself all these hours of annoyance by consolidating the tools you need in one handy location? Enter DevTools. This site serves as a place for developers to query several common online resources used for building webpages, and then save any search results that they deem relevant in a personalized profile linked to their Google account. Development has never been so efficient!</div>
+		</div>
+		</div>
+	</div>
+
+
+</div><!-- End Main Conatiner Tag -->
+<div id = "footer">&copy;2017 DevTools Team</div>
+	
+	
+	<script type="text/javascript" src="assets/javascript/auth.js"></script>
+  	<!-- <script type="text/javascript" src="assets/javascript/news.js"></script> -->
+  	<script type="text/javascript" src="network.js"></script>
+	<!-- <script type="text/javascript" src="assets/javascript/socialMedia.js"></script> -->
+  	<script type="text/javascript" src="assets/javascript/save.js"></script>
+	<script type="text/javascript" src="assets/javascript/bootstrap.js"></script>
+	<script type="text/javascript" src="assets/javascript/two.js"></script>
+	<script type="text/javascript" src="assets/javascript/logo.js"></script>
+	
+</body>
+</html>
