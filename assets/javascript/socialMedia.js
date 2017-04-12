@@ -10,6 +10,7 @@ $(document).ready(function() {
     var apiResponse = [];
 
     $("#submit").click(function() {
+      event.preventDefault();
         $("#results").empty();
             var userQuery = $("#searchTerm").val().trim();
      

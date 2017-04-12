@@ -23,9 +23,11 @@
 </head>
 
 <body id="mainbody">
-   <a href="index.html">  <div id="draw-shapes"></div> </a>
-    <div id = "alt-logo">
-       <a href="index.html"> <img src = "assets/images/devToolsTransparentLogo.png" alt = "DevTools"> </a>
+    <a href="index.html">
+        <div id="draw-shapes"></div>
+    </a>
+    <div id="alt-logo">
+        <a href="index.html"> <img src="assets/images/devToolsTransparentLogo.png" alt="DevTools"> </a>
     </div>
     <!-- logo goes here -->
     <div class="container">
@@ -44,7 +46,7 @@
                         <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
                         <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+                        <li role="presentation"><a role="menuitem" href="index.html">Home</a></li>
                     </ul>
                 </div>
             </div>
@@ -57,7 +59,7 @@
                         <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
                         <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+                        <li role="presentation"><a role="menuitem" href="index.html">Home</a></li>
                     </ul>
                 </div>
             </div>
@@ -70,7 +72,7 @@
                         <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
                         <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+                        <li role="presentation"><a role="menuitem" href="index.html">Home</a></li>
                     </ul>
                 </div>
             </div>
@@ -83,42 +85,44 @@
                         <li id="readNews" role="presentation"><a role="menuitem" href="saved.html">Read</a></li>
                         <li id="unreadNews" role="presentation"><a role="menuitem" href="saved.html">Unread</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" href="#">Placeholder</a></li>
+                        <li role="presentation"><a role="menuitem" href="index.html">Home</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <!-- End of Row for Buttons -->
         <div class="row">
+            <div class="col-xs-12">
             <div id="GoogleSign">
                 <button id="GoogleSignIn">Google Sign-In</button>
-                <a href="about.html"><button id="AboutBtn">About DevTools</button></a>
+                <a href="about.html">
+                    <button id="AboutBtn">About DevTools</button>
+                </a>
             </div>
-            <div class="row">
-                <div id="saveMessageDiv" class="col-xs-12 col-lg-12">
-                    <p id="saveMessage"></p>
-                </div>
             </div>
         </div>
-        
         <div class="row">
-            <!-- Map Row -->
-            <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-xs-12">
-                <div id='map' style="width: 100%; height: 500px;"></div>
-                <form id="locationForm">
-                    <input type="text" id="userLocation">
-                    <br>
-                    <button id="add-location" type="submit" class="btn btn-primary">Your Location</button>
-                </form>
+            <div id="saveMessageDiv" class="col-xs-12 col-lg-12">
+                <p id="saveMessage"></p>
             </div>
-            <!-- Close Column Div -->
         </div>
-        <!-- Map Row End -->
-        
+    </div>
+    <div class="row">
+        <!-- Map Row -->
+        <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-xs-12">
+            <div id='map' style="width: 100%; height: 500px;"></div>
+            <form id="locationForm">
+                <input type="text" id="userLocation">
+                <br>
+                <button id="add-location" type="submit" class="btn btn-primary">Your Location</button>
+            </form>
+        </div>
+        <!-- Close Column Div -->
+    </div>
+    <!-- Map Row End -->
     </div>
     <!-- End Main Conatiner Tag -->
-<div id = "footer">&copy;2017 DevTools Team</div>
-
+    <div id="footer">&copy;2017 DevTools Team</div>
     <script type="text/javascript" src="assets/javascript/auth.js"></script>
     <script type="text/javascript" src="assets/javascript/news.js"></script>
     <script type="text/javascript" src="assets/javascript/socialMedia.js"></script>
