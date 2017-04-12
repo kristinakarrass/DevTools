@@ -11,7 +11,6 @@ $(document).ready(function() {
     $("#submit").click(function() {
         $("#results").empty();
             var userQuery = $("#searchTerm").val().trim();
-            console.log(userQuery);
      
             var apiResponse = $.ajax({
               // url: 'https://api.twitter.com/1.1/search/tweets.json?q=' + userQuery,
@@ -21,27 +20,34 @@ $(document).ready(function() {
             });
 
             apiResponse.done(function(response){
-                  console.log(response);
                   //extract each video's title, description, link, small thumbnail to display on page, put each of these in a div for each video and append to 
                   //larger div
                   var resultsArray = response.items;
                   if (resultsArray.length>0) {   
                   for (i=0; i<resultsArray.length; i++) {
-                    var newDiv = $("<div class = 'video'>");
-                    var videoTitle = resultsArray[i].snippet.title;
+                    var newDiv = $("<div class = 'video'><br/><hr/>");
+                    
+                    var videoTitle = $("<h4>" + resultsArray[i].snippet.title + "</h4>");
+                    newDiv.append(videoTitle);
+
+                    var videoDescription = $("<p> Description: " + resultsArray[i].snippet.description + "</p>");
+                    newDiv.append(videoDescription);
+
+                    var videoThumbnail = resultsArray[i].snippet.thumbnails.default.url;
+                    var videoImage = $("<img src ='" + videoThumbnail + "' alt = 'video'> <br/><br/>");
+                    newDiv.append(videoImage);
+
                     var vidId = resultsArray[i].id.videoId;
                     var vidIdFullLink = "https://www.youtube.com/watch?v="+vidId;
-                    newDiv.append("<a href =" + vidIdFullLink + ">"+ videoTitle + "</a> <br>");
-                    var videoDescription = resultsArray[i].snippet.description;
-                    newDiv.append(videoDescription + "<br>");
-                    var videoThumbnail = resultsArray[i].snippet.thumbnails.default.url;
-                    newDiv.append("<img src ='"+videoThumbnail+"' alt = 'video'> <br>");
-                    var saveButton = $("<button>");
-                    saveButton.addClass("saveButton");
-                    saveButton.text("Save");
-                    newDiv.append(saveButton);
-                    newDiv.append("<br>");
+                    // newDiv.append("<a href =" + vidIdFullLink + ">"+ videoTitle + "</a> <br>");
                     
+                    
+                    var saveButton = $("<button>");
+                    saveButton.addClass("saveBtn");
+                    saveButton.text("Save");
+                    saveButton.attr("id", videoTitle);
+                    saveButton.attr("data", "youtube");
+                    newDiv.append(saveButton);
                     newDiv.append("<button><a href='"+ vidIdFullLink+"'" + "target='_blank'>View</a></button>");
                     //note to frontend person! please style the text on this button so it doesnt have standard link formatting and looks like standard button text.
                     //the other ways of making link buttons that I've looked up don't work with dynamic button creation like I have here
