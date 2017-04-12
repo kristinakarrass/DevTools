@@ -26,6 +26,8 @@ $(document).ready(function(){
             else {
                 //if there is a current user, signs them out
                 firebase.auth().signOut();
+                $("#saveMessage").html("Please sign-in before using our site.");
+                $("#saveMessageDiv").show();
             }
         
     }//ends toggleSignIn
@@ -39,12 +41,12 @@ $(document).ready(function(){
                 //stores the user's id 
                 uid = user.uid;
                 //changes to a sign out button and updates status when user is signed in
-                // document.getElementById('GoogleSignInStatus').textContent = 'Signed in';
                 document.getElementById('GoogleSignIn').textContent = 'Sign out';
             }   else {
-                    //changes to a sign in button and updates status when user is signed out 
-                    // document.getElementById('GoogleSignInStatus').textContent = 'Signed out';
+                    //changes to a sign in button and updates status when user is signed out
                     document.getElementById('GoogleSignIn').textContent = 'Google Sign-In';
+                    $("#saveMessage").html("Please sign-in before using our site.");
+                    $("#saveMessageDiv").show();
                 }
         
         });
