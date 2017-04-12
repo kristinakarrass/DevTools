@@ -1,5 +1,4 @@
 //references the database
-var database =  firebase.database();
     //create map 
     L.mapbox.accessToken = 'pk.eyJ1Ijoia3Jpa2FyciIsImEiOiJjajEwcmxpdmEwM2ZoMzJwZWNrc3hnYm13In0.8cXei-iPLO0qctadLZ9O9w';
     var map = L.mapbox.map('map', 'mapbox.streets')
