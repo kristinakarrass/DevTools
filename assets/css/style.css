@@ -3,7 +3,10 @@
     color: red;
     text-align: center;
 }
-
+.btn-group {
+    width: 88%;
+    margin-left: 70px;
+}
 #saveMessageDiv {
     height: 30px;
 }
