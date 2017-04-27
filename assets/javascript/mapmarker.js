@@ -50,10 +50,6 @@
                 'marker-color' : '#4aaaa5'
             })
 
-        
-    
-    // Create Chapel Hill, NC marker and set its icons to L.mapbox.marker.icon
-
         })  //popup showing user location and add it to map
             .bindPopup(location)
             .addTo(map);
