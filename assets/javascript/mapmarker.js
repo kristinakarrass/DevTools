@@ -31,12 +31,6 @@
 
     });
 
-    database.ref("map/").on("child_added", function(childSnapshot) {
-        console.log(childSnapshot.val().location);
-
-        $("#userLocation").val("");
-    });
-
     //retrieve user location from database and display it on map
     database.ref("map/").on("child_added", function(childSnapshot) {
         //creating variables from childsnapshot for marker on map
