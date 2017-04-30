@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 
     var provider;
@@ -39,12 +40,10 @@ $(document).ready(function(){
                 //stores the user's id 
                 uid = user.uid;
                 //changes to a sign out button and updates status when user is signed in
-                // document.getElementById('GoogleSignInStatus').textContent = 'Signed in';
                 document.getElementById('GoogleSignIn').textContent = 'Sign out';
             }   else {
-                    //changes to a sign in button and updates status when user is signed out 
-                    // document.getElementById('GoogleSignInStatus').textContent = 'Signed out';
-                    document.getElementById('GoogleSignIn').textContent = 'Sign in with Google';
+                    //changes to a sign in button and updates status when user is signed out
+                    document.getElementById('GoogleSignIn').textContent = 'Google Sign-In';
                 }
         
         });

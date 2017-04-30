@@ -3,10 +3,10 @@
 var config = {
    	apiKey: "AIzaSyB0X6st9I1JgHTGsZ2bf6cEomOEp7I_COM",
    	authDomain: "webtools-f8edf.firebaseapp.com",
-    databaseURL: "https://webtools-f8edf.firebaseio.com",
-    projectId: "webtools-f8edf",
-    storageBucket: "webtools-f8edf.appspot.com",
-    messagingSenderId: "541829677685"
+    	databaseURL: "https://webtools-f8edf.firebaseio.com",
+    	projectId: "webtools-f8edf",
+    	storageBucket: "webtools-f8edf.appspot.com",
+    	messagingSenderId: "541829677685"
 };
 
 firebase.initializeApp(config);
@@ -15,7 +15,6 @@ firebase.initializeApp(config);
 var database =  firebase.database();
 
 $(document).ready(function() {
-    $("#saveMessageDiv").hide();
 
     //stores user and article info in database
 	function storeArticle() {
@@ -206,7 +205,7 @@ $(document).ready(function() {
                         deleteBtn = $("<button class='delete' id=" + key +  ">X</button>");
                         $(returnDiv).append(deleteBtn);
 
-                        returnLinkBtn = $("<button>" + returnLink + "</button>");
+                        returnLinkBtn = $("<button class='linkButton'>" + returnLink + "</button>");
                         $(returnDiv).append(returnLinkBtn);
                         
                         $(returnDiv).append(readCheckbox);
