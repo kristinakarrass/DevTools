@@ -40,26 +40,6 @@ h1 {
     border-radius: 6px;
 }
 
-#submit,
-#submitSocial,
-#submitNews,
-#GoogleSignIn {
-    background-color: rgb(0, 200, 255);
-    border-radius: 6px;
-    border: 5px solid royalblue;
-    color: white;
-    padding: 2px;
-    font-weight: bold;
-    width: 100px;
-    display: inline-block;
-    float: left;
-}
-
-#GoogleSignIn {
-    width: 160px;
-    margin-left: 25px;
-}
-
 .linkButton {
     background-color: #FF8000;
     border-color: orangered;
@@ -175,35 +155,66 @@ a {
     font-size: 13px;
 }
 
-#searchTerm,
-#search {
-    border-width: 3px;
-    width: 61%;
-    float: left;
-    margin-right: 20px;
-    margin-left: 70px;
-}
-
 body {
     background: url("../images/clouds.jpg");
     background-size: cover;
 }
 
-#GoogleSign {
-    padding: 40px;
-    margin-top: 5px;
+#searchTerm,
+#search {
+    border-width: 3px;
+    width: 61%;
+    float: left;
+    margin-right: 15px;
+    margin-left: 70px;
+    height: 38px;
 }
 
 #AboutBtn {
     background-color: rgb(0, 200, 255);
-    border: 6px solid royalblue;
+    border: 5px solid royalblue;
     color: white;
     font-weight: bold;
     font-size: 12.5px;
     border-radius: 5px;
-    padding: 4px 12px;
-    float: right;
+    width: 160px;
+    padding: 5.5px 12px;
+    float: left;
     margin-right: 4%;
+    margin-left: 69px;
+}
+
+#indexButtons {
+    margin-top: 40px;
+}
+
+#submit,
+#submitNews,
+.GoogleSignIn,
+.GoogleSignInIndex {
+    background-color: rgb(0, 200, 255);
+    border-radius: 6px;
+    border: 5px solid royalblue;
+    color: white;
+    padding: 2px;
+    font-weight: bold;
+    width: 100px;
+    display: inline-block;
+    padding: 4px 12px;
+}
+
+.GoogleSignIn,
+.GoogleSignInIndex  {
+    width: 160px;
+    margin-right: 69px;
+    float: right;
+}
+
+#submit,
+#submitSocial,
+#submitNews {
+    float: left;
+
 }
 
 #alt-logo {
@@ -239,6 +250,8 @@ body {
     color: white;
 }
 
+/*-----------------------------------------------------------------------------------*/
+
 @media screen and (max-width: 1630px) {
     #draw-shapes {
         display: none;
@@ -255,11 +268,15 @@ body {
     }
 }
 
+/*-----------------------------------------------------------------------------------*/
+
 @media screen and (max-width: 1080px) {
     #alt-logo img {
         max-width: 700px;
     }
 }
+
+/*-----------------------------------------------------------------------------------*/
 
 @media screen and (max-width: 1030px) {
     .display,
@@ -274,6 +291,8 @@ body {
         margin-left: 15px;
     }
 }
+
+/*-----------------------------------------------------------------------------------*/
 
 @media screen and (max-width: 700px) {
     #alt-logo img {
@@ -302,42 +321,69 @@ body {
     }
 }
 
+/*-----------------------------------------------------------------------------------*/
+
 @media screen and (max-width: 550px) {
+
     #alt-logo img {
         max-width: 420px;
+        margin-left: -8px;
     }
+
     #locationForm {
         left: 170px;
     }
-    #menu1 {
-        width: 120px;
+
+    .dropdown-menu {
+        text-align: center;
     }
+
+    #menu1 {
+        width: 95px;
+        margin-left: -12px;
+        padding-left: 2px;
+        text-align: center;
+    }
+
+    .caret {
+        display: none;
+    }
+
     .display,
     .video,
     #resultDiv {
         margin-left: auto;
         margin-right: auto;
     }
-    #GoogleSignIn {
+
+    .GoogleSignIn {
         width: 160px;
     }
+
     #searchTerm,
     #search {
         width: 100%;
         margin: 0 0 10px;
     }
+
     #submit,
     #submitSocial,
     #submitNews {
         margin-left: 45px;
     }
-    #GoogleSign {
-        padding: 0;
-        margin: 20px;
+
+    .GoogleSignInIndex {
+        margin-right: 5px;
     }
+
+    #AboutBtn {
+        margin-left: 5px;
+    }
+
     #map {
         margin-top: 20px;
     }
+
     .form-inline {
         margin-bottom: 20px;
     }
