@@ -1,8 +1,5 @@
 $(document).ready(function() {
  
-    
-    
-
     //This ajax call indexes the search function of the YouTube API for videos that match the query the user types into the search box.
     //Relevant info about each video is then extracted from the API response and displayed in a div.
     //Buttons which allow the user to save each video to their profile or view it on YouTube are then dynamically created under each result. 
@@ -42,7 +39,6 @@ $(document).ready(function() {
                     var vidId = resultsArray[i].id.videoId;
                     var vidIdFullLink = "https://www.youtube.com/watch?v="+vidId;
                     
-                    
                     //dynamically creating "save" and "view" buttons for each search result
                     var saveButton = $("<button>");
                     saveButton.addClass("saveBtn");
@@ -52,11 +48,6 @@ $(document).ready(function() {
                     newDiv.append(saveButton);
                     newDiv.append("<button id='yTLink'><a href='"+ vidIdFullLink+"'" + "target='_blank'>View</a></button>");
                     
-                    
-
-                  
-                    
-                    
                     $("#results").append(newDiv);
                   }
                 }
@@ -64,8 +55,7 @@ $(document).ready(function() {
                   $("#results").append("<p id='noResultsMessage'> Sorry, no results are available for that search.<br/>Please try another search term.</p>");
 
                 }
-
-                
+                     
         });//end apiResponse.done
     });//end submit click
 
