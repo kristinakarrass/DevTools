@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     $("#submit").click(function() {
       event.preventDefault();
-        $("#results").empty();
+        $(".results").empty();
             var userQuery = $("#searchTerm").val().trim();
      
             var apiResponse = $.ajax({
@@ -24,7 +24,7 @@ $(document).ready(function() {
                   var resultsArray = response.items;
                   if (resultsArray.length>0) {   //execute if there is at last 1 result
                   for (i=0; i<resultsArray.length; i++) {
-                    var newDiv = $("<div class = 'video'><br/><hr/>");
+                    var newDiv = $("<div class='video'><br/><hr/>");
                     
                     var videoTitle = $("<h4>" + resultsArray[i].snippet.title + "</h4>");
                     newDiv.append(videoTitle);
@@ -48,11 +48,11 @@ $(document).ready(function() {
                     newDiv.append(saveButton);
                     newDiv.append("<button id='yTLink'><a href='"+ vidIdFullLink+"'" + "target='_blank'>View</a></button>");
                     
-                    $("#results").append(newDiv);
+                    $(".results").append(newDiv);
                   }
                 }
                 else { // if there are no search results for the user's query
-                  $("#results").append("<p id='noResultsMessage'> Sorry, no results are available for that search.<br/>Please try another search term.</p>");
+                  $(".results").append("<p id='noResultsMessage'> Sorry, no results are available for that search.<br/>Please try another search term.</p>");
 
                 }
                      
