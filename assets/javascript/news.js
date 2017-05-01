@@ -9,8 +9,7 @@ $(document).ready(function() {
 
     $("#submitNews").click(function() {
         event.preventDefault();
-        $("#results").empty();
-        $("#saveResults").empty();
+        $(".results").empty();
         var userQuery = $("#search").val().trim();
      
         //requests query from reddit
@@ -60,10 +59,10 @@ $(document).ready(function() {
                     apiURLBtn.attr("id", "articleLink");
                     $(resultDiv).append(apiURLBtn);
                         
-                    $("#results").append(resultDiv);
+                    $(".results").append(resultDiv);
                 };
             }   else {
-                    $("#results").append("<p id='noResultsMessage'> Sorry, no results are available for that search.<br/>Please try another search term.</p>");
+                    $(".results").append("<p id='noResultsMessage'> Sorry, no results are available for that search.<br/>Please try another search term.</p>");
                 }
 
         });//ends apiResponse.done

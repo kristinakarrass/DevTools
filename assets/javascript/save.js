@@ -212,9 +212,9 @@ $(document).ready(function() {
 
                         //displays unread items before read items
                         if(json[key]["readStatus"] == 0) {
-                            $("#saveResults").prepend(returnDiv);
+                            $(".results").prepend(returnDiv);
                         }   else {
-                                $("#saveResults").append(returnDiv);
+                                $(".results").append(returnDiv);
                             }
 
                         count ++;
@@ -229,8 +229,7 @@ $(document).ready(function() {
 	$("#allSavedNews").click(function() {
         console.log("I am in allSavedNews");
         $(".results").empty();
-    	$("#results").empty();
-        $("#saveResults").empty();
+        $("#mapDiv").hide();
         $("#saveMessageDiv").hide();
 
         database.ref(uid + "/").once("value", function(snapshot) {
@@ -261,8 +260,8 @@ $(document).ready(function() {
  
     $("#readNews").on("click", function(event) {
 	
-        $("#results").empty();
-        $("#saveResults").empty();
+        $(".results").empty();
+        $("#mapDiv").hide();
         $("#saveMessageDiv").hide();
 
         database.ref(uid + "/").once('value').then(function(snapshot) {
@@ -285,8 +284,8 @@ $(document).ready(function() {
 
     $("#unreadNews").on("click", function(event) {
 	
-        $("#results").empty();
-        $("#saveResults").empty();
+        $(".results").empty();
+        $("#mapDiv").hide();
         $("#saveMessageDiv").hide();
 
         database.ref(uid + "/").once('value').then(function(snapshot) {
