@@ -69,7 +69,6 @@ circle2.opacity = .65;
 circle2.fill = "orangered";
 circle1.opacity = .5;
 
-
 Ogroup2.fill = 'rgb(0, 200, 255)';
 Ogroup2.linewidth = 12;
 Ogroup2.stroke = "royalblue";
@@ -97,7 +96,6 @@ underline3.fill = 'rgb(0, 200, 255)';
 underline3.linewidth = 12;
 underline3.stroke = "royalblue";
 
-
 //rotating shapes
 triangle.rotation = 9.96;
 triangle2.rotation = 9.96;
@@ -107,12 +105,10 @@ semi1.rotation = 5.8;
 line1.rotation = 5.8;
 semi2.rotation = 5.8;
 
-
 //the rest of the code animates the shapes in such a way that they will spin every time the page is loaded. 
 two.bind('update', function(frameCount) {
   // This code is called everytime two.update() is called, so, about every 60 sec.
  
-
   if (Dgroup.scale > 0.9999 && two.frameCount < 5) {
     Dgroup.scale = Dgroup.rotation = 0;
   }
@@ -122,7 +118,6 @@ two.bind('update', function(frameCount) {
 }).play(); 
 
 two.bind('update', function(frameCount) {
- 
 
   if (Egroup.scale > 0.9999 && two.frameCount < 5) {
     Egroup.scale = Egroup.rotation = 0;
@@ -134,7 +129,6 @@ two.bind('update', function(frameCount) {
 
 two.bind('update', function(frameCount) {
   
-
   if (Vgroup.scale > 0.9999 && two.frameCount < 5) {
     Vgroup.scale = Vgroup.rotation = 0;
   }
@@ -144,7 +138,6 @@ two.bind('update', function(frameCount) {
 }).play(); 
 
 two.bind('update', function(frameCount) {
-
 
   if (Tgroup.scale > 0.9999 && two.frameCount < 5) {
     Tgroup.scale = Tgroup.rotation = 0;
@@ -176,7 +169,6 @@ two.bind('update', function(frameCount) {
 
 two.bind('update', function(frameCount) {
   
-
   if (rect9.scale > 0.9999 && two.frameCount < 5) {
     rect9.scale = rect9.rotation = 0;
   }
@@ -187,7 +179,6 @@ two.bind('update', function(frameCount) {
 
 two.bind('update', function(frameCount) {
  
-
   if (Sgroup.scale > 0.9999 && two.frameCount < 5) {
     Sgroup.scale = Sgroup.rotation = 0;
   }
@@ -196,10 +187,7 @@ two.bind('update', function(frameCount) {
   Sgroup.rotation += t * 4 * Math.PI;
 }).play(); 
 
-
-
-// Don't forget to tell two to render everything
-// to the screen
+// tells two to render everything to the screen
 two.update();
 two.update();
 two.update();

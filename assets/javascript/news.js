@@ -34,7 +34,7 @@ $(document).ready(function() {
 
             //loops thru items returned and displays them
             if (apiData.length > 0) {
-                for (i=0; i < apiData.length; i++) {
+                for (var i = 0; i < apiData.length; i++) {
 
                     resultDiv = $("<div id='resultDiv'><br/><hr/>");
 
