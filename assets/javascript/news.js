@@ -7,10 +7,10 @@ $(document).ready(function() {
     window.apiDescription;
     window.readStatus = "unread";
 
-    $("#submitNews").click(function() {
+    $("#submit").click(function() {
         event.preventDefault();
         $(".results").empty();
-        var userQuery = $("#search").val().trim();
+        var userQuery = $("#searchTerm").val().trim();
      
         //requests query from reddit
         var apiResponse = $.ajax({
