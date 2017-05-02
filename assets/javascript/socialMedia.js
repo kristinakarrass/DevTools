@@ -10,6 +10,7 @@ $(document).ready(function() {
       event.preventDefault();
         $(".results").empty();
             var userQuery = $("#searchTerm").val().trim();
+            $("#searchTerm").val("");
      
             var apiResponse = $.ajax({
             
@@ -23,7 +24,7 @@ $(document).ready(function() {
                   //larger div
                   var resultsArray = response.items;
                   if (resultsArray.length>0) {   //execute if there is at last 1 result
-                  for (i=0; i<resultsArray.length; i++) {
+                  for (var i = 0; i < resultsArray.length; i++) {
                     var newDiv = $("<div class='video'><br/><hr/>");
                     
                     var videoTitle = $("<h4>" + resultsArray[i].snippet.title + "</h4>");
