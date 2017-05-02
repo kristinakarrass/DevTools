@@ -100,7 +100,6 @@ a {
     color: white;
     padding: 2px;
     font-weight: bold;
-    width: 100px;
     display: inline-block;
     padding: 4px 12px;
 }
@@ -114,14 +113,15 @@ a {
 /*submits searchTerm from input box*/
 #submit {
     float: left;
+    width: 11.5%;
 }
 
 #searchTerm {
     border-width: 3px;
-    width: 61%;
+    width: 75%;
     float: left;
     margin-right: 15px;
-    margin-left: 70px;
+    margin-left: 69px;
     height: 38px;
 }
 
@@ -132,7 +132,7 @@ a {
 }
 
 #saveMessageDiv {
-    height: 30px;
+    height: 50px;
 }
 
 /*for about page*/
@@ -268,11 +268,11 @@ a {
         margin-left: 15px;
         margin-right: 15px;
     }
-    #searchTerm,
+    /*#searchTerm,
     #search {
         width: 53%;
         margin-left: 15px;
-    }
+    }*/
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -293,11 +293,11 @@ a {
         margin-left: 15px;
         margin-right: 15px;
     }
-    #searchTerm,
+   /* #searchTerm,
     #search {
         width: 53%;
         margin-left: 15px;
-    }
+    }*/
     #GoogleSignIn {
         width: 140px;
         margin-left: 10px;
@@ -343,16 +343,14 @@ a {
         width: 160px;
     }
 
-    #searchTerm,
-    #search {
-        width: 100%;
-        margin: 0 0 10px;
+    #searchTerm {
+        /*width: 100%;*/
+        margin: 0 0 0 -12px;
     }
 
-    #submit,
-    #submitSocial,
-    #submitNews {
-        margin-left: 45px;
+    #submit {
+        width: 25%;
+        margin-left: 5px;
     }
 
     .GoogleSignInIndex {
