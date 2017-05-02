@@ -6,7 +6,8 @@ $("#submit").on("click", function() {
     //clear results div to not have multiple search results displayed
     $(".results").html("");
     //grab user input from github input box
-    var searchTerm = $("#searchTerm").val();
+    var searchTerm = $("#searchTerm").val().trim();
+    $("#searchTerm").val("");
 
     //query GitHub repositories for user search term 
     var queryURL = "https://api.github.com/search/repositories?q=" + searchTerm;
@@ -34,10 +35,7 @@ $("#submit").on("click", function() {
                 resultsDiv.append(saveButton);
                 resultsDiv.append(gitURL);    
                          
-                // resultsDiv.append("<button class='button'>Save</button>");
-
                 //append results to resultsDiv
-
                 $(".results").append(resultsDiv);
             }
             //if no results are found, alert user to start over

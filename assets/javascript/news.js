@@ -11,6 +11,7 @@ $(document).ready(function() {
         event.preventDefault();
         $(".results").empty();
         var userQuery = $("#searchTerm").val().trim();
+        $("#searchTerm").val("");
      
         //requests query from reddit
         var apiResponse = $.ajax({
