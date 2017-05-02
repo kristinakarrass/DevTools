@@ -1,7 +1,11 @@
+
 //click event for GitHub search
 $("#submit").on("click", function() {
     //prevents the page to reload when enter is pressed
     event.preventDefault();
+
+    $("#saveMessage").html("");
+    $("#saveMessageDiv").hide();
 
     //clear results div to not have multiple search results displayed
     $(".results").html("");
@@ -48,4 +52,11 @@ $("#submit").on("click", function() {
             }
         });//ends .done
     }//ends if (!searchTerm == "")
+    else {
+        $("#saveMessage").html("You must enter a search term.");
+        $("#saveMessageDiv").show();
+    }
+
 });//ends submit
+
+

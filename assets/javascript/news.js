@@ -8,7 +8,12 @@ $(document).ready(function() {
     window.readStatus = "unread";
 
     $("#submit").click(function() {
+        
         event.preventDefault();
+
+        $("#saveMessage").html("");
+        $("#saveMessageDiv").hide();
+
         $(".results").empty();
         var userQuery = $("#searchTerm").val().trim();
 
@@ -72,6 +77,10 @@ $(document).ready(function() {
 
             });//ends apiResponse.done
         }//ends if (!userQuery == "")
+        else {
+            $("#saveMessage").html("You must enter a search term.");
+            $("#saveMessageDiv").show();
+        }
 
     });//ends submit click
 

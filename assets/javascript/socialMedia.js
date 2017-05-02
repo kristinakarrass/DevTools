@@ -5,10 +5,15 @@ $(document).ready(function() {
     //Buttons which allow the user to save each video to their profile or view it on YouTube are then dynamically created under each result. 
 
     $("#submit").click(function() {
+
         event.preventDefault();
+
+        $("#saveMessage").html("");
+        $("#saveMessageDiv").hide();
+
         $(".results").empty();
         var userQuery = $("#searchTerm").val().trim();
-        console.log(userQuery);
+
         //only searches if the user inputs a value
         if (!userQuery == "") {
 
@@ -59,6 +64,11 @@ $(document).ready(function() {
                          
             });//end apiResponse.done
         }//end if (!userQuery == "")
+        else {
+            $("#saveMessage").html("You must enter a search term.");
+            $("#saveMessageDiv").show();
+        }
+
     });//end submit click
 
 });//end document.ready
