@@ -183,11 +183,12 @@ a {
     color: white;
 }
 
-/*display for Github result display, video for YouTube video*/
-/*resultDiv for Reddit result display*/
+/*displays results - display for Github, video for YouTube,*/
+/*#resultDiv for Reddit & .resultDiv for saved items*/
 .display,
 .video,
-#resultDiv {
+#resultDiv,
+.resultDiv {
     margin-left: 70px;
     margin-right: 70px;
 }
