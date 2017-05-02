@@ -5,10 +5,15 @@ $(document).ready(function() {
     //Buttons which allow the user to save each video to their profile or view it on YouTube are then dynamically created under each result. 
 
     $("#submit").click(function() {
+
         event.preventDefault();
+
+        $("#resultMessage").html("");
+        $("#resultMessageDiv").hide();
+
         $(".results").empty();
         var userQuery = $("#searchTerm").val().trim();
-        console.log(userQuery);
+
         //only searches if the user inputs a value
         if (!userQuery == "") {
 
@@ -54,11 +59,18 @@ $(document).ready(function() {
                     }
                 }
                 else { // if there are no search results for the user's query
-                    $(".results").append("<p id='noResultsMessage'> Sorry, no results are available for that search.<br/>Please try another search term.</p>");
+                    $("#resultMessage").html("Sorry, no results are available for that search.<br/>Please try another search term.");
+                    $("#resultMessageDiv").show();
+
                 }
                          
             });//end apiResponse.done
         }//end if (!userQuery == "")
+        else {
+            $("#resultMessage").html("You must enter a search term.");
+            $("#resultMessageDiv").show();
+        }
+
     });//end submit click
 
 });//end document.ready

@@ -8,7 +8,12 @@ $(document).ready(function() {
     window.readStatus = "unread";
 
     $("#submit").click(function() {
+        
         event.preventDefault();
+
+        $("#resultMessage").html("");
+        $("#resultMessageDiv").hide();
+
         $(".results").empty();
         var userQuery = $("#searchTerm").val().trim();
 
@@ -67,11 +72,16 @@ $(document).ready(function() {
                         $(".results").append(resultDiv);
                     };
                 }   else {
-                        $(".results").append("<p id='noResultsMessage'> Sorry, no results are available for that search.<br/>Please try another search term.</p>");
+                        $("#resultMessage").html("Sorry, no results are available for that search.<br/>Please try another search term.");
+                        $("#resultMessageDiv").show();
                     }
 
             });//ends apiResponse.done
         }//ends if (!userQuery == "")
+        else {
+            $("#resultMessage").html("You must enter a search term.");
+            $("#resultMessageDiv").show();
+        }
 
     });//ends submit click
 

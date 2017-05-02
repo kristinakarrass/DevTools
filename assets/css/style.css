@@ -125,13 +125,12 @@ a {
     height: 38px;
 }
 
-#noResultsMessage,
-#saveMessage {
+#resultMessage {
     color: red;
     text-align: center;
 }
 
-#saveMessageDiv {
+#resultMessageDiv {
     height: 50px;
 }
 

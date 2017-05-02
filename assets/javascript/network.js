@@ -1,7 +1,11 @@
+
 //click event for GitHub search
 $("#submit").on("click", function() {
     //prevents the page to reload when enter is pressed
     event.preventDefault();
+
+    $("#resultMessage").html("");
+    $("#resultMessageDiv").hide();
 
     //clear results div to not have multiple search results displayed
     $(".results").html("");
@@ -44,8 +48,16 @@ $("#submit").on("click", function() {
                 }
                 //if no results are found, alert user to start over
             } else {
-                $(".results").html("<p id='noResultsMessage'> Sorry, no results are available for that search.<br/>Please try another search term.</p>");
+                $("#resultMessage").html("Sorry, no results are available for that search.<br/>Please try another search term.");
+                $("#resultMessageDiv").show();
             }
         });//ends .done
     }//ends if (!searchTerm == "")
+    else {
+        $("#resultMessage").html("You must enter a search term.");
+        $("#resultMessageDiv").show();
+    }
+
 });//ends submit
+
+

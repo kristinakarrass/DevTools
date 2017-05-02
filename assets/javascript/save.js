@@ -19,7 +19,7 @@ $(document).ready(function() {
     //stores user and article info in database
 	function storeArticle() {
 
-        $("#saveMessageDiv").hide();
+        $("#resultMessageDiv").hide();
         //gets id of the clicked article (which is set to the unique article identifier from Firebase)
         var articleTitle = $(this).attr("id");
         var articleSource = $(this).attr("data");
@@ -34,8 +34,8 @@ $(document).ready(function() {
                 //if title in article's id and in Firebase match, displays message
                 if (articleTitle === childSnapshot.val().title) {
                     duplicate = true;
-                    $("#saveMessage").html("You already saved this item.");
-                    $("#saveMessageDiv").show();
+                    $("#resultMessage").html("You already saved this item.");
+                    $("#resultMessageDiv").show();
                 } 
             });
 
@@ -150,7 +150,7 @@ $(document).ready(function() {
 
     //gets article information from Firebase and displays it
     function processJSON(json, readStatus) {
-            console.log("I am in processJSON");
+
         if (json){
 
                 var count = 0;
@@ -230,7 +230,7 @@ $(document).ready(function() {
         console.log("I am in allSavedNews");
         $(".results").empty();
         $("#mapDiv").hide();
-        $("#saveMessageDiv").hide();
+        $("#resultMessageDiv").hide();
 
         database.ref(uid + "/").once("value", function(snapshot) {
             
@@ -244,8 +244,8 @@ $(document).ready(function() {
             }
             
             if (count === 0) {
-                $("#saveMessage").html("You haven't saved anything yet.");
-                $("#saveMessageDiv").show();
+                $("#resultMessage").html("You haven't saved anything yet.");
+                $("#resultMessageDiv").show();
             }
         
     	});//ends database.ref
@@ -261,7 +261,7 @@ $(document).ready(function() {
 	
         $(".results").empty();
         $("#mapDiv").hide();
-        $("#saveMessageDiv").hide();
+        $("#resultMessageDiv").hide();
 
         database.ref(uid + "/").once('value').then(function(snapshot) {
 
@@ -273,8 +273,8 @@ $(document).ready(function() {
             }
 
             if (readCount === 0) {
-                $("#saveMessage").html("You don't have any read items.");
-                $("#saveMessageDiv").show();
+                $("#resultMessage").html("You don't have any read items.");
+                $("#resultMessageDiv").show();
             } 
         
         });//ends database.ref
@@ -285,7 +285,7 @@ $(document).ready(function() {
 	
         $(".results").empty();
         $("#mapDiv").hide();
-        $("#saveMessageDiv").hide();
+        $("#resultMessageDiv").hide();
 
         database.ref(uid + "/").once('value').then(function(snapshot) {
 
@@ -297,8 +297,8 @@ $(document).ready(function() {
             }
 
             if (unreadCount === 0) {
-                $("#saveMessage").html("You don't have any unread items.");
-                $("#saveMessageDiv").show();
+                $("#resultMessage").html("You don't have any unread items.");
+                $("#resultMessageDiv").show();
             }  
         
         });//ends database.ref
