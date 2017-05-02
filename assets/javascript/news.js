@@ -11,8 +11,8 @@ $(document).ready(function() {
         
         event.preventDefault();
 
-        $("#saveMessage").html("");
-        $("#saveMessageDiv").hide();
+        $("#resultMessage").html("");
+        $("#resultMessageDiv").hide();
 
         $(".results").empty();
         var userQuery = $("#searchTerm").val().trim();
@@ -72,14 +72,15 @@ $(document).ready(function() {
                         $(".results").append(resultDiv);
                     };
                 }   else {
-                        $(".results").append("<p id='noResultsMessage'> Sorry, no results are available for that search.<br/>Please try another search term.</p>");
+                        $("#resultMessage").html("Sorry, no results are available for that search.<br/>Please try another search term.");
+                        $("#resultMessageDiv").show();
                     }
 
             });//ends apiResponse.done
         }//ends if (!userQuery == "")
         else {
-            $("#saveMessage").html("You must enter a search term.");
-            $("#saveMessageDiv").show();
+            $("#resultMessage").html("You must enter a search term.");
+            $("#resultMessageDiv").show();
         }
 
     });//ends submit click

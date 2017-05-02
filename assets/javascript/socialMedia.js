@@ -8,8 +8,8 @@ $(document).ready(function() {
 
         event.preventDefault();
 
-        $("#saveMessage").html("");
-        $("#saveMessageDiv").hide();
+        $("#resultMessage").html("");
+        $("#resultMessageDiv").hide();
 
         $(".results").empty();
         var userQuery = $("#searchTerm").val().trim();
@@ -59,14 +59,16 @@ $(document).ready(function() {
                     }
                 }
                 else { // if there are no search results for the user's query
-                    $(".results").append("<p id='noResultsMessage'> Sorry, no results are available for that search.<br/>Please try another search term.</p>");
+                    $("#resultMessage").html("Sorry, no results are available for that search.<br/>Please try another search term.");
+                    $("#resultMessageDiv").show();
+
                 }
                          
             });//end apiResponse.done
         }//end if (!userQuery == "")
         else {
-            $("#saveMessage").html("You must enter a search term.");
-            $("#saveMessageDiv").show();
+            $("#resultMessage").html("You must enter a search term.");
+            $("#resultMessageDiv").show();
         }
 
     });//end submit click
