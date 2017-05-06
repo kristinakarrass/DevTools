@@ -1,3 +1,15 @@
+.dropdown-menu {
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, 0);
+    text-align: center;
+    min-width: 125px;
+}
+
+
+
+
+
 /*step 1 of 3 to make sticky footer*/
 html {
     position: relative;

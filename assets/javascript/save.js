@@ -227,10 +227,15 @@ $(document).ready(function() {
     }//ends processJSON
 
 	$("#allSavedNews").click(function() {
-        console.log("I am in allSavedNews");
+        
         $(".results").empty();
         $("#mapDiv").hide();
         $("#resultMessageDiv").hide();
+
+        if (!uid) {
+            $("#resultMessage").html("Please sign in on our homepage to <br/> save any items or view any saved items");
+            $("#resultMessageDiv").show();
+        }
 
         database.ref(uid + "/").once("value", function(snapshot) {
             
