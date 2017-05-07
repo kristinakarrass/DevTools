@@ -232,7 +232,7 @@ a {
 }
 
 /*position absolute/bottom 0/width 100% is step 3 of 3 to make sticky footer*/
-#footer {
+footer {
     position: absolute;
     bottom: 0;
     height: 80px;
