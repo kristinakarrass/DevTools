@@ -31,12 +31,6 @@
 
     });
 
-    database.ref("map/").on("child_added", function(childSnapshot) {
-        console.log(childSnapshot.val().location);
-
-        $("#userLocation").val("");
-    });
-
     //retrieve user location from database and display it on map
     database.ref("map/").on("child_added", function(childSnapshot) {
         //creating variables from childsnapshot for marker on map
@@ -49,10 +43,6 @@
                 'marker-size' : 'medium',
                 'marker-color' : '#4aaaa5'
             })
-
-        
-    
-    // Create Chapel Hill, NC marker and set its icons to L.mapbox.marker.icon
 
         })  //popup showing user location and add it to map
             .bindPopup(location)
