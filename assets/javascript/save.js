@@ -3,10 +3,10 @@
 var config = {
    	apiKey: "AIzaSyB0X6st9I1JgHTGsZ2bf6cEomOEp7I_COM",
    	authDomain: "webtools-f8edf.firebaseapp.com",
-    databaseURL: "https://webtools-f8edf.firebaseio.com",
-    projectId: "webtools-f8edf",
-    storageBucket: "webtools-f8edf.appspot.com",
-    messagingSenderId: "541829677685"
+    	databaseURL: "https://webtools-f8edf.firebaseio.com",
+    	projectId: "webtools-f8edf",
+    	storageBucket: "webtools-f8edf.appspot.com",
+    	messagingSenderId: "541829677685"
 };
 
 firebase.initializeApp(config);
@@ -19,7 +19,7 @@ $(document).ready(function() {
     //stores user and article info in database
 	function storeArticle() {
 
-        $("#saveMessageDiv").hide();
+        $("#resultMessageDiv").hide();
         //gets id of the clicked article (which is set to the unique article identifier from Firebase)
         var articleTitle = $(this).attr("id");
         var articleSource = $(this).attr("data");
@@ -32,15 +32,15 @@ $(document).ready(function() {
             //loops through database and captures snapshot of individual articles
             snapshot.forEach(function(childSnapshot) {
                 //if title in article's id and in Firebase match, displays message
-                if (articleTitle == childSnapshot.val().title) {
+                if (articleTitle === childSnapshot.val().title) {
                     duplicate = true;
-                    $("#saveMessage").html("You already saved this item.");
-                    $("#saveMessageDiv").show();
+                    $("#resultMessage").html("You already saved this item.");
+                    $("#resultMessageDiv").show();
                 } 
             });
 
             //saves article in Firebase if not a duplicate  
-            if (!duplicate && articleSource == "reddit") {
+            if (!duplicate && articleSource === "reddit") {
 
                 var parentToStore = article.parentNode;
                 var titleToStore = parentToStore.childNodes[2].innerHTML;
@@ -55,7 +55,7 @@ $(document).ready(function() {
                 });
             }
 
-            if (!duplicate && articleSource == "git") {
+            if (!duplicate && articleSource === "git") {
                 var parentToStore = article.parentNode;
                 var titleToStore = parentToStore.childNodes[0].innerHTML;
                 var gitUserToStore = parentToStore.childNodes[1].innerHTML;
@@ -71,7 +71,7 @@ $(document).ready(function() {
                 });
             }
 
-             if (!duplicate && articleSource == "youtube") {
+             if (!duplicate && articleSource === "youtube") {
                 var parentToStore = article.parentNode;
                 var titleToStore = parentToStore.childNodes[2].innerHTML;
                 var descToStore = parentToStore.childNodes[3].innerHTML;
@@ -104,9 +104,9 @@ $(document).ready(function() {
                 var articleKey = childSnapshot.key;
                 
                 //if key in article's id and article identifier in Firebase match, changes readStatus
-                if (articleKey == articleChosen) {
+                if (articleKey === articleChosen) {
 
-                    if(childSnapshot.val().readStatus == 0) {
+                    if(childSnapshot.val().readStatus === 0) {
                         database.ref(uid + '/' + articleKey).update({
                             readStatus: 1
                         });
@@ -139,7 +139,7 @@ $(document).ready(function() {
                 var articleKey = childSnapshot.key;
                 
                 //if key in article's id and article identifier in Firebase match, delete article
-                if (articleKey == articleChosen) {
+                if (articleKey === articleChosen) {
                     database.ref(uid + '/' + articleKey).remove();
                 } //ends if articleKey
 
@@ -150,7 +150,7 @@ $(document).ready(function() {
 
     //gets article information from Firebase and displays it
     function processJSON(json, readStatus) {
-            console.log("I am in processJSON");
+
         if (json){
 
                 var count = 0;
@@ -164,12 +164,12 @@ $(document).ready(function() {
                 for (var key in json) {
 
                     //if Firebase readStatus = parameter readStatus or if parameter readStatus = -1
-                    if(json[key]["readStatus"] == readStatus || readStatus == -1) {
+                    if(json[key]["readStatus"] === readStatus || readStatus === -1) {
                         returnTitle = json[key]["title"];
                         returnDesc =  json[key]["description"];
                         returnLink =  json[key]["URL"];
 
-                        if(json[key]["source"] == "git"){
+                        if(json[key]["source"] === "git"){
                             returnGitUser = json[key]["gitUser"];
                         }
 
@@ -178,7 +178,7 @@ $(document).ready(function() {
                         // }
 
                         //creates readStatus checkbox and sets unique article key as id
-                        if(json[key]["readStatus"] == 1) {
+                        if(json[key]["readStatus"] === 1) {
                             readCheckbox = $("<div class='checkbox-inline'><label><input type='checkbox' value='one' id=" + key + " class='readArticle' checked>Read</label></div>");
                         }   else{
                                 readCheckbox = $("<div class='checkbox-inline'><label><input type='checkbox' value='one' id=" + key + " class='readArticle'>Read</label></div>");
@@ -190,7 +190,7 @@ $(document).ready(function() {
                         returnTitleH4 = $("<h4>" + returnTitle + "</h4>");
                         $(returnDiv).append(returnTitleH4);
 
-                        if(json[key]["source"] == "git"){
+                        if(json[key]["source"] === "git"){
                             returnGitUserP = $("<p>" + returnGitUser + "</p>");
                             $(returnDiv).append(returnGitUserP);
                         }
@@ -198,7 +198,7 @@ $(document).ready(function() {
                         returnDescP = $("<p>" + returnDesc + "</p><br/>");
                         $(returnDiv).append(returnDescP);
 
-                        // if(json[key]["source"] == "youtube"){
+                        // if(json[key]["source"] === "youtube"){
                         //     $(returnDiv).append(returnImg);
                         // }
 
@@ -211,10 +211,10 @@ $(document).ready(function() {
                         $(returnDiv).append(readCheckbox);
 
                         //displays unread items before read items
-                        if(json[key]["readStatus"] == 0) {
-                            $("#saveResults").prepend(returnDiv);
+                        if(json[key]["readStatus"] === 0) {
+                            $(".results").prepend(returnDiv);
                         }   else {
-                                $("#saveResults").append(returnDiv);
+                                $(".results").append(returnDiv);
                             }
 
                         count ++;
@@ -227,11 +227,15 @@ $(document).ready(function() {
     }//ends processJSON
 
 	$("#allSavedNews").click(function() {
-        console.log("I am in allSavedNews");
+        
         $(".results").empty();
-    	$("#results").empty();
-        $("#saveResults").empty();
-        $("#saveMessageDiv").hide();
+        $("#mapDiv").hide();
+        $("#resultMessageDiv").hide();
+
+        if (!uid) {
+            $("#resultMessage").html("Please sign in on our homepage to <br/> save any items or view any saved items");
+            $("#resultMessageDiv").show();
+        }
 
         database.ref(uid + "/").once("value", function(snapshot) {
             
@@ -244,10 +248,9 @@ $(document).ready(function() {
                 count = processJSON(json, -1);
             }
             
-            if (count == 0) {
-                $("#saveMessage").html("You haven't saved anything yet.");
-                $("#saveMessageDiv").show();
-
+            if (count === 0) {
+                $("#resultMessage").html("You haven't saved anything yet.");
+                $("#resultMessageDiv").show();
             }
         
     	});//ends database.ref
@@ -261,9 +264,9 @@ $(document).ready(function() {
  
     $("#readNews").on("click", function(event) {
 	
-        $("#results").empty();
-        $("#saveResults").empty();
-        $("#saveMessageDiv").hide();
+        $(".results").empty();
+        $("#mapDiv").hide();
+        $("#resultMessageDiv").hide();
 
         database.ref(uid + "/").once('value').then(function(snapshot) {
 
@@ -274,9 +277,9 @@ $(document).ready(function() {
                 readCount = processJSON(json, 1);
             }
 
-            if (readCount == 0) {
-                $("#saveMessage").html("You don't have any read items.");
-                $("#saveMessageDiv").show();
+            if (readCount === 0) {
+                $("#resultMessage").html("You don't have any read items.");
+                $("#resultMessageDiv").show();
             } 
         
         });//ends database.ref
@@ -285,9 +288,9 @@ $(document).ready(function() {
 
     $("#unreadNews").on("click", function(event) {
 	
-        $("#results").empty();
-        $("#saveResults").empty();
-        $("#saveMessageDiv").hide();
+        $(".results").empty();
+        $("#mapDiv").hide();
+        $("#resultMessageDiv").hide();
 
         database.ref(uid + "/").once('value').then(function(snapshot) {
 
@@ -295,12 +298,12 @@ $(document).ready(function() {
             var unreadCount = 0;
             if(json){
                 //stores number of unread files
-                unreadCount =processJSON(json, 0);
+                unreadCount = processJSON(json, 0);
             }
 
-            if (unreadCount == 0) {
-                $("#saveMessage").html("You don't have any unread items.");
-                $("#saveMessageDiv").show();
+            if (unreadCount === 0) {
+                $("#resultMessage").html("You don't have any unread items.");
+                $("#resultMessageDiv").show();
             }  
         
         });//ends database.ref

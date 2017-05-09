@@ -1,5 +1,3 @@
-$("#saveMessage").html("Please sign-in before using our site.");
-$("#saveMessageDiv").show();
 
 $(document).ready(function(){
 
@@ -13,15 +11,15 @@ $(document).ready(function(){
             provider = new firebase.auth.GoogleAuthProvider();
             //displays Google sign-in popup
             firebase.auth().signInWithPopup(provider).then(function(result) {
-                $("#saveMessageDiv").hide();
+                $("#resultMessageDiv").hide();
                 //captures all user data captured by Google
                 user = result.user;
             //captures and displays any errors   
             }).catch(function(error) {
                   var errorCode = error.code;
                   var errorMessage = error.message;
-                  $("#saveMessage").html("Login Failed. " + errorMessage);
-                  $("#saveMessageDiv").show();    
+                  $("#resultMessage").html("Login Failed. " + errorMessage);
+                  $("#resultMessageDiv").show();    
                   console.log(errorCode);
                   console.log(errorMessage);
                });
@@ -29,8 +27,6 @@ $(document).ready(function(){
             else {
                 //if there is a current user, signs them out
                 firebase.auth().signOut();
-                $("#saveMessage").html("Please sign-in before using our site.");
-                $("#saveMessageDiv").show();
             }
         
     }//ends toggleSignIn
@@ -48,8 +44,6 @@ $(document).ready(function(){
             }   else {
                     //changes to a sign in button and updates status when user is signed out
                     document.getElementById('GoogleSignIn').textContent = 'Google Sign-In';
-                    $("#saveMessage").html("Please sign-in before using our site.");
-                    $("#saveMessageDiv").show();
                 }
         
         });

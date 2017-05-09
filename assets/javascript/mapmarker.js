@@ -35,7 +35,6 @@
     database.ref("map/").on("child_added", function(childSnapshot) {
         //creating variables from childsnapshot for marker on map
         var location = childSnapshot.val().location;
-
         var userLng = childSnapshot.val().longitude;
         var userLat = childSnapshot.val().latitude;
         var marker = L.marker([userLat, userLng], {
